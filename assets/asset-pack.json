@@ -1,0 +1,141 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "src/scenes/animations.json",
+                "type": "animation",
+                "key": "animations"
+            },
+            {
+                "url": "assets/back.png",
+                "type": "image",
+                "key": "back"
+            },
+            {
+                "url": "assets/background.jpg",
+                "type": "image",
+                "key": "background"
+            },
+            {
+                "url": "assets/Bitmap.png",
+                "type": "image",
+                "key": "Bitmap"
+            },
+            {
+                "url": "assets/Bitmap 2.png",
+                "type": "image",
+                "key": "Bitmap 2"
+            },
+            {
+                "url": "assets/Bitmap 3.png",
+                "type": "image",
+                "key": "Bitmap 3"
+            },
+            {
+                "url": "assets/Bitmap 4.png",
+                "type": "image",
+                "key": "Bitmap 4"
+            },
+            {
+                "url": "assets/Bitmap 5.png",
+                "type": "image",
+                "key": "Bitmap 5"
+            },
+            {
+                "url": "assets/Bitmap 6.png",
+                "type": "image",
+                "key": "Bitmap 6"
+            },
+            {
+                "url": "assets/Bitmap 7.png",
+                "type": "image",
+                "key": "Bitmap 7"
+            },
+            {
+                "url": "assets/Bitmap 8.png",
+                "type": "image",
+                "key": "Bitmap 8"
+            },
+            {
+                "url": "src/Prefab/Blocks.js",
+                "type": "script",
+                "key": "Blocks"
+            },
+            {
+                "url": "assets/bom.png",
+                "type": "image",
+                "key": "bom"
+            },
+            {
+                "url": "src/Prefab/Bom.js",
+                "type": "script",
+                "key": "Bom"
+            },
+            {
+                "url": "assets/bom_animation.png",
+                "frameConfig": {
+                    "frameWidth": 256,
+                    "frameHeight": 256,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "bom_animation"
+            },
+            {
+                "url": "assets/dd.png",
+                "type": "image",
+                "key": "dd"
+            },
+            {
+                "url": "src/Prefab/Diamond.js",
+                "type": "script",
+                "key": "Diamond"
+            },
+            {
+                "url": "assets/dino.png",
+                "key": "dino",
+                "type": "image"
+            },
+            {
+                "url": "assets/ElementBlocksTeaser.jpg",
+                "type": "image",
+                "key": "ElementBlocksTeaser"
+            },
+            {
+                "url": "assets/field-cover.png",
+                "type": "image",
+                "key": "field-cover"
+            },
+            {
+                "url": "assets/mask.png",
+                "type": "image",
+                "key": "mask"
+            },
+            {
+                "url": "assets/star.png",
+                "type": "image",
+                "key": "star"
+            },
+            {
+                "url": "assets/stars.png",
+                "type": "image",
+                "key": "stars"
+            },
+            {
+                "url": "src/script/UiManager.js",
+                "type": "script",
+                "key": "UiManager"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}

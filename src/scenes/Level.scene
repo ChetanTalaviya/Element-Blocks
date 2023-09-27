@@ -1,0 +1,72 @@
+{
+    "id": "01aefa93-6044-4159-8358-7e91310aa05f",
+    "sceneType": "SCENE",
+    "settings": {
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Level",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "0cebad67-caee-413f-aeab-803d4d3193bc",
+            "label": "field_cover",
+            "texture": {
+                "key": "field-cover"
+            },
+            "x": 649,
+            "y": 365,
+            "scaleX": 1.05,
+            "scaleY": 1.05
+        },
+        {
+            "type": "Container",
+            "id": "f15f7845-337d-4307-8a32-66e4a453aa96",
+            "label": "back_block_Cont",
+            "scope": "CLASS"
+        },
+        {
+            "type": "Container",
+            "id": "03978363-e850-4aea-9caf-ca2ec7942eea",
+            "label": "side_cont",
+            "scope": "CLASS",
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "d9a3e726-1402-4327-9a9a-f0e960c63384",
+                    "label": "back_bom",
+                    "scope": "METHOD",
+                    "texture": {
+                        "key": "back"
+                    },
+                    "x": 121,
+                    "y": 641,
+                    "scaleX": 0.35,
+                    "scaleY": 0.35
+                },
+                {
+                    "type": "Image",
+                    "id": "03d2a903-ae88-427e-a299-2806b9e81fbc",
+                    "label": "back_diamond",
+                    "scope": "METHOD",
+                    "texture": {
+                        "key": "back"
+                    },
+                    "x": 117,
+                    "y": 535,
+                    "scaleX": 0.35,
+                    "scaleY": 0.35
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor 2D - Scene Editor",
+        "url": "https://phasereditor2d.com",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 4
+    }
+}

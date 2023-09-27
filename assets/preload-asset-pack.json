@@ -1,0 +1,31 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/b47a5606e9df4c9dc51d8ec631727faa.png",
+                "frameConfig": {
+                    "frameWidth": 175,
+                    "frameHeight": 175,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "b47a5606e9df4c9dc51d8ec631727faa"
+            },
+            {
+                "url": "assets/guapen.png",
+                "type": "image",
+                "key": "guapen"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
