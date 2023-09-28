@@ -112,7 +112,7 @@ class Blocks extends Phaser.GameObjects.Container {
 		const minDistance = 40;
 		let nearestDeck = null;
 		let deckNumber = null;
-
+ 
 		for (const x in this.oScene.AllImageArray) {
 			const disFromOpenDeck = Phaser.Math.Distance.BetweenPoints(
 				gameObj,
@@ -149,7 +149,7 @@ class Blocks extends Phaser.GameObjects.Container {
 			this.isDragged = false;
 			this.lastPosX = this.x;
 			this.lastPosY = this.y;
-			gameObj.visible = false;
+			// gameObj.visible = false;
 			if (this.isLastXY !== null) {
 				this.aMatchingBox.map((x) => {
 					x.destroy();
@@ -160,8 +160,9 @@ class Blocks extends Phaser.GameObjects.Container {
 					box.destroy();
 				});
 			}
-			this.destroyImage(this.aFinalMatchingImage);
-			this.oScene.addNewPrefab(this.name);
+ 			this.destroyImage(this.aFinalMatchingImage);
+			console.log(this.aFinalMatchingImage);
+  			this.oScene.addNewPrefab(this.name);
 		} else {
 			this.x = this.lastPosX;
 			this.y = this.lastPosY;
@@ -289,6 +290,7 @@ class Blocks extends Phaser.GameObjects.Container {
 		}
 
 		if (newcol > 0) {
+
 			if (
 				col <= 7 - newcol &&
 				row <= 7 - newrow &&
@@ -296,7 +298,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				(newrow < 0 && newcol < 0 ? row >= Math.abs(newrow) : true) &&
 				this.isEmpty(col, row, newcol, 2, newrow, newrow_Z)
 			) {
-				let xxY = 0;
+				let xxY = 0; 
 				for (let col_index = 0; col_index <= newcol; col_index++) {
 					const img = this.createMaskImage(
 						this.oScene.AllImageArray[aXvalues].x,
@@ -449,8 +451,8 @@ class Blocks extends Phaser.GameObjects.Container {
 	}
 
 	response() {
-		const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
-		// const i = 10;
+		// const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
+		const i = 6;
 		this.allImage = [];
 		const dis_X = 45;
 		const dis_Y = 45;
@@ -462,17 +464,17 @@ class Blocks extends Phaser.GameObjects.Container {
 			"Bitmap 6",
 			"Bitmap 7",
 			"Bitmap 8",
-			"mask"
+			// "mask"
 		];
 		const randomImage = aAllImage[Math.floor(Math.random() * aAllImage.length)];
 
 		const addImage = (x, y, imgs) => {
-			const img = this.oScene.add.image(x, y, imgs);
+ 			const img = this.oScene.add.image(x, y, imgs);
 			this.color = imgs;
 			this.blocks_cont.add(img);
 			this.allImage.push(img);
 			img.setScale(0.6);
-		};
+ 		};
 		switch (i) {
 			case 0:
 				addImage(0, 0, randomImage);
@@ -532,12 +534,14 @@ class Blocks extends Phaser.GameObjects.Container {
 				for (let index = 0; index <= 2; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
-				addImage(-dis_X, 0, randomImage);
+				addImage(-dis_X, 0, "star");
+				addImage(-dis_X, 0,randomImage);
 				addImage(-dis_X * 2, 0, randomImage);
 				this.name = {
 					x: -2,
 					y: 2,
 				};
+				this.isStar = true;
 				break;
 			case 7:
 				for (let index = 0; index <= 2; index++) {
@@ -565,6 +569,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				for (let index = 0; index <= 1; index++) {
 					addImage(0, -index * dis_Y, randomImage);
 				}
+				addImage(-dis_X, 0, "star");
 				addImage(-dis_X, 0, randomImage);
 				this.name = {
 					x: -1,
@@ -575,6 +580,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				for (let index = 0; index <= 1; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
+				addImage(dis_X, 0, "star");
 				addImage(dis_X, 0, randomImage);
 				this.name = {
 					x: 1,
@@ -585,6 +591,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				for (let index = 0; index <= 2; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
+				addImage(dis_X * 2, 0, "star");
 				addImage(dis_X, 0, randomImage);
 				addImage(dis_X * 2, 0, randomImage);
 				this.name = {
@@ -596,6 +603,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				for (let index = 0; index <= 1; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
+				addImage(dis_X, dis_Y, "star");
 				addImage(dis_X, 0, randomImage);
 				addImage(dis_X, dis_Y, randomImage);
 				this.name = {
@@ -605,6 +613,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				};
 				break;
 		}
+ 
 	}
 	isEmpty(col, row, aArray_1, i, aArray_2, newrow_Z) {
 		return (
@@ -774,8 +783,9 @@ class Blocks extends Phaser.GameObjects.Container {
 		return img;
 	}
 	destroyImage(aArray) {
-
-		for (let index = 0; index < aArray.length; index++) {
+		console.log(aArray);	
+  
+ 		for (let index = 0; index < aArray.length; index++) {
 			this.oScene.removeArray[aArray[index].col][aArray[index].row] = 1;
 			this.oScene.AllImageObj[aArray[index].row][aArray[index].col].setTexture(
 				this.color

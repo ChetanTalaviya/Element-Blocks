@@ -142,7 +142,7 @@ class Level extends Phaser.Scene {
 				console.log("**************************************");
 				setTimeout(() => {
 					this.oUiManager.setWinnwrAnimation();
-				}, 5000);
+				}, 1000);
 
 
 
