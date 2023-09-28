@@ -149,7 +149,7 @@ class Blocks extends Phaser.GameObjects.Container {
 			this.isDragged = false;
 			this.lastPosX = this.x;
 			this.lastPosY = this.y;
-			// gameObj.visible = false;
+			gameObj.visible = false;
 			if (this.isLastXY !== null) {
 				this.aMatchingBox.map((x) => {
 					x.destroy();
