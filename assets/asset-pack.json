@@ -85,6 +85,11 @@
                 "key": "bom_animation"
             },
             {
+                "url": "assets/Clouds.png",
+                "type": "image",
+                "key": "Clouds"
+            },
+            {
                 "url": "assets/dd.png",
                 "type": "image",
                 "key": "dd"

@@ -414,16 +414,16 @@ class Blocks extends Phaser.GameObjects.Container {
 
 			}
 			if (newrow !== 0 && newcol !== 0) {
-				// console.log(newrow);
-				// if (newrow > 0) {
-				// 	if ((rowSum + Math.abs(newrow) === 7) && row - Math.abs(newrow) === i) {
-				// 		addImage(i, "row");
-				// 	}
-				// 	// else if ((rowSum + 1 === 8) && ( Math.abs(newrow) === 2 ? (row - 1 === i || row === i) : true)) {
-				// 	// 	addImage(i, "row");
+ 				if (newrow > 0) {
+					if ((rowSum + Math.abs(newrow) === 7) && row - Math.abs(newrow) === i) {
+						addImage(i, "row");
+					}
+					// else if ((rowSum + 1 === 8) && ( Math.abs(newrow) === 2 ? (row - 1 === i || row === i) : true)) {
+					// 	addImage(i, "row");
 
-				// 	// }
-				// } else {
+					// }
+				  }
+				//    else {
 				// 	if ((rowSum + Math.abs(newrow) === 7) && row + Math.abs(newrow) === i) {
 				// 		addImage(i, "row");
 				// 	}
@@ -432,11 +432,12 @@ class Blocks extends Phaser.GameObjects.Container {
 
 				// 	// }
 				// }
-				// if (newcol > 0) {
-				// 	if (colSum + Math.abs(newcol) === 7 && col === i) {
-				// 		addImage(i, "col");
-				// 	}
-				// } else {
+				if (newcol > 0) {
+					if (colSum + Math.abs(newcol) === 7 && col === i) {
+						addImage(i, "col");
+					}
+				}
+				// else {
 				// 	if (colSum + Math.abs(newcol) === 7 && col === i) {
 				// 		addImage(i, "col");
 				// 	}
@@ -449,7 +450,7 @@ class Blocks extends Phaser.GameObjects.Container {
 
 	response() {
 		const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
-		// const i = 6;
+		// const i = 10;
 		this.allImage = [];
 		const dis_X = 45;
 		const dis_Y = 45;
@@ -461,6 +462,7 @@ class Blocks extends Phaser.GameObjects.Container {
 			"Bitmap 6",
 			"Bitmap 7",
 			"Bitmap 8",
+			"mask"
 		];
 		const randomImage = aAllImage[Math.floor(Math.random() * aAllImage.length)];
 
@@ -772,7 +774,7 @@ class Blocks extends Phaser.GameObjects.Container {
 		return img;
 	}
 	destroyImage(aArray) {
- 
+
 		for (let index = 0; index < aArray.length; index++) {
 			this.oScene.removeArray[aArray[index].col][aArray[index].row] = 1;
 			this.oScene.AllImageObj[aArray[index].row][aArray[index].col].setTexture(
@@ -860,7 +862,6 @@ class Blocks extends Phaser.GameObjects.Container {
 
 /* END-USER-CODE */
  
-
 /* END OF COMPILED CODE */
 
 // You can write more code here

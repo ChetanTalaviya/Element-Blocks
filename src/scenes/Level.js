@@ -90,6 +90,7 @@ class Level extends Phaser.Scene {
 		}
 
 		this.oUiManager = new UiManager(this);
+		this.addPartical()
 	}
 	addNewPrefab(imgName) {
 		this.nPrefab++;
@@ -115,10 +116,10 @@ class Level extends Phaser.Scene {
 
 			const newCol = this.allPrefab[index_prefab].name.y;
 			const newRow = this.allPrefab[index_prefab].name.x;
-
-			for (let index_col = 0; index_col < 8; index_col++) {
+			const newZ = this.allPrefab[index_prefab].name.z;
+ 			for (let index_col = 0; index_col < 8; index_col++) {
 				for (let index_row = 0; index_row < 8; index_row++) {
-					if (this.isAvailable(index_col, index_row, newCol, newRow)) {
+					if (this.isAvailable(index_col, index_row, newCol, newRow, newZ === 1)) {
 						isPossible = false;
 						break;
 					}
@@ -141,7 +142,7 @@ class Level extends Phaser.Scene {
 				console.log("**************************************");
 				setTimeout(() => {
 					this.oUiManager.setWinnwrAnimation();
-				}, 1500);
+				}, 5000);
 
 
 
@@ -151,24 +152,40 @@ class Level extends Phaser.Scene {
 
 
 	}
-	isAvailable(col, row, newCol, newRow) {
+	isAvailable(col, row, newCol, newRow, isnewZ) {
 		let result_row = 0;
 		let result_col = 0;
 		if (newCol === 0 && newRow === 0) { return true }
 
 		if (newRow > 0 && newCol > 0) {
-			// Check rows
-			for (let index_row = 0; index_row <= newRow; index_row++) {
-				if (row + index_row < 8 && this.removeArray[col][row + index_row] === 0) {
-					result_row++;
+
+			if (isnewZ) {
+				for (let index_row = 0; index_row <= newRow; index_row++) {
+					if (row + index_row < 8 && col + 1 < 8 && this.removeArray[col][row + index_row] === 0 && this.removeArray[col + 1][row] === 0 && this.removeArray[col + 1][row + 1] === 0) {
+						result_row++;
+					}
+				}
+ 				// Check columns
+				for (let index_col = 0; index_col <= newCol; index_col++) {
+					if (col + index_col < 8 && this.removeArray[col + index_col][row] === 0) {
+						result_col++;
+					}
+				}
+			} else {
+				// Check rows
+				for (let index_row = 0; index_row <= newRow; index_row++) {
+					if (row + index_row < 8 && this.removeArray[col][row + index_row] === 0) {
+						result_row++;
+					}
+				}
+				// Check columns
+				for (let index_col = 0; index_col <= newCol; index_col++) {
+					if (col + index_col < 8 && this.removeArray[col + index_col][row] === 0) {
+						result_col++;
+					}
 				}
 			}
-			// Check columns
-			for (let index_col = 0; index_col <= newCol; index_col++) {
-				if (col + index_col < 8 && this.removeArray[col + index_col][row] === 0) {
-					result_col++;
-				}
-			}
+
 		} else if (newRow < 0 && newCol < 0) {
 			// Check rows
 			for (let index_row = 0; index_row <= Math.abs(newRow); index_row++) {
@@ -222,6 +239,9 @@ class Level extends Phaser.Scene {
 		}
 		return result_col === Math.abs(newCol) + 1 && result_row === Math.abs(newRow) + 1;
 
+
+	}
+	addPartical() {
 
 	}
 
