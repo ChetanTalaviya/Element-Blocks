@@ -90,8 +90,8 @@ class Diamond extends Phaser.GameObjects.Image {
 
 		for (let index_col = 0; index_col < 8; index_col++) {
 			for (let index_row = 0; index_row < 8; index_row++) {
-				if (color === this.oScene.AllImageObj[index_col][index_row].texture.key)
-					this.oScene.AllImageObj[index_col][index_row].alpha = 1;
+				if (color === this.oScene.AllImageObj[index_col][index_row].sprite.texture.key)
+					this.oScene.AllImageObj[index_col][index_row].sprite.alpha = 1;
 			}
 		}
 	}
@@ -100,14 +100,14 @@ class Diamond extends Phaser.GameObjects.Image {
 		const row = this.lastRowAndCol.Row;
 		const color = this.lastRowAndCol.Color;
 
-		const gem = this.oScene.add.sprite(this.oScene.AllImageObj[row][col].x, this.oScene.AllImageObj[row][col].y, "Bitmap")
+		const gem = this.oScene.add.sprite(this.oScene.AllImageObj[row][col].sprite.x, this.oScene.AllImageObj[row][col].sprite.y, "Bitmap")
 
 		gem.play('bom_anim').setScale(1.5);
 
 		for (let index_col = 0; index_col < 8; index_col++) {
 			for (let index_row = 0; index_row < 8; index_row++) {
-				if (color === this.oScene.AllImageObj[index_col][index_row].texture.key)
-					this.oScene.AllImageObj[index_col][index_row].setTexture("Bitmap");
+				if (color === this.oScene.AllImageObj[index_col][index_row].sprite.texture.key)
+					this.oScene.AllImageObj[index_col][index_row].sprite.setTexture("Bitmap");
 				this.oScene.removeArray[index_row][index_col] = 0;
 
 			}
@@ -120,7 +120,7 @@ class Diamond extends Phaser.GameObjects.Image {
 	setAlphavalues(alphaValue) {
 		for (let index_col = 0; index_col < 8; index_col++) {
 			for (let index_row = 0; index_row < 8; index_row++) {
-				this.oScene.AllImageObj[index_col][index_row].alpha = alphaValue;
+				this.oScene.AllImageObj[index_col][index_row].sprite.alpha = alphaValue;
 			}
 		}
 	}

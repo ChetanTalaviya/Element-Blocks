@@ -88,7 +88,7 @@ class Bom extends Phaser.GameObjects.Sprite {
 			for (let i = row - 1; i <= row + 1; i++) {
 				for (let j = col - 1; j <= col + 1; j++) {
 					if (i >= 0 && i <= 7 && j >= 0 && j <= 7) {
-						this.oScene.AllImageObj[i][j].alpha = 1;
+						this.oScene.AllImageObj[i][j].sprite.alpha = 1;
 					}
 				}
 			}
@@ -100,13 +100,13 @@ class Bom extends Phaser.GameObjects.Sprite {
 		const row = this.lastRowAndCol.Row;
 
 		if (col >= 0 && col < 8 && row >= 0 && row < 8) {
-			const gem = this.oScene.add.sprite(this.oScene.AllImageObj[row][col].x, this.oScene.AllImageObj[row][col].y, "Bitmap")
+			const gem = this.oScene.add.sprite(this.oScene.AllImageObj[row][col].sprite.x, this.oScene.AllImageObj[row][col].sprite.y, "Bitmap")
 
 			gem.play('bom_anim').setScale(1.5)
 			for (let i = row - 1; i <= row + 1; i++) {
 				for (let j = col - 1; j <= col + 1; j++) {
 					if (i >= 0 && i <= 7 && j >= 0 && j <= 7) {
-						this.oScene.AllImageObj[i][j].setTexture("Bitmap");
+						this.oScene.AllImageObj[i][j].sprite.setTexture("Bitmap");
 						this.oScene.removeArray[j][i] = 0;
 					}
 				}

@@ -161,8 +161,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				});
 			}
  			this.destroyImage(this.aFinalMatchingImage);
-			console.log(this.aFinalMatchingImage);
-  			this.oScene.addNewPrefab(this.name);
+   			this.oScene.addNewPrefab(this.name);
 		} else {
 			this.x = this.lastPosX;
 			this.y = this.lastPosY;
@@ -361,9 +360,9 @@ class Blocks extends Phaser.GameObjects.Container {
 		const addImage = (i, is) => {
 			for (let k = 0; k <= 7; k++) {
 				if (is === "col") {
-					var img = this.oScene.add.image(this.oScene.AllImageObj[i][k].x, this.oScene.AllImageObj[i][k].y, this.color);
+					var img = this.oScene.add.image(this.oScene.AllImageObj[i][k].sprite.x, this.oScene.AllImageObj[i][k].sprite.y, this.color);
 				} else {
-					var img = this.oScene.add.image(this.oScene.AllImageObj[k][i].x, this.oScene.AllImageObj[k][i].y, this.color);
+					var img = this.oScene.add.image(this.oScene.AllImageObj[k][i].sprite.x, this.oScene.AllImageObj[k][i].sprite.y, this.color);
 				}
 				this.oScene.back_block_Cont.add(img);
 				this.aTempMtachImage.push(img);
@@ -783,11 +782,10 @@ class Blocks extends Phaser.GameObjects.Container {
 		return img;
 	}
 	destroyImage(aArray) {
-		console.log(aArray);	
-  
+   
  		for (let index = 0; index < aArray.length; index++) {
 			this.oScene.removeArray[aArray[index].col][aArray[index].row] = 1;
-			this.oScene.AllImageObj[aArray[index].row][aArray[index].col].setTexture(
+			this.oScene.AllImageObj[aArray[index].row][aArray[index].col].sprite.setTexture(
 				this.color
 			);
 		}
@@ -799,21 +797,21 @@ class Blocks extends Phaser.GameObjects.Container {
 				for (let index = 0; index <= 7; index++) {
 					if (matchValue.Direction === "col") {
 						this.oScene.removeArray[index][matchValue.DrconNmbr] = 0;
-						this.oScene.AllImageObj[matchValue.DrconNmbr][index].setTexture(
+						this.oScene.AllImageObj[matchValue.DrconNmbr][index].sprite.setTexture(
 							"Bitmap"
 						);
 						this.matchAnimation(
-							this.oScene.AllImageObj[matchValue.DrconNmbr][index].x,
-							this.oScene.AllImageObj[matchValue.DrconNmbr][index].y
+							this.oScene.AllImageObj[matchValue.DrconNmbr][index].sprite.x,
+							this.oScene.AllImageObj[matchValue.DrconNmbr][index].sprite.y
 						);
 					} else {
 						this.oScene.removeArray[matchValue.DrconNmbr][index] = 0;
-						this.oScene.AllImageObj[index][matchValue.DrconNmbr].setTexture(
+						this.oScene.AllImageObj[index][matchValue.DrconNmbr].sprite.setTexture(
 							"Bitmap"
 						);
 						this.matchAnimation(
-							this.oScene.AllImageObj[index][matchValue.DrconNmbr].x,
-							this.oScene.AllImageObj[index][matchValue.DrconNmbr].y
+							this.oScene.AllImageObj[index][matchValue.DrconNmbr].sprite.x,
+							this.oScene.AllImageObj[index][matchValue.DrconNmbr].sprite.y
 						);
 					}
 				}

@@ -74,7 +74,7 @@ class Level extends Phaser.Scene {
 				img.name = `${index_x}_${index_y}`;
 				this.back_block_Cont.add(img)
 				this.AllImageArray.push(img)
-				this.AllImageObj[index_x].push(img)
+				this.AllImageObj[index_x].push({sprite:img ,isStar:false})
 			}
 		}
 
