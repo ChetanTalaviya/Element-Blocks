@@ -7,6 +7,7 @@ class UiManager {
         this.bom = new Bom(this.oSceneObj, 120, 642);
 
         this.oSceneObj.side_cont.add(this.bom)
+        this.oSceneObj.side_cont.add(this.diamond)
 
     }
 

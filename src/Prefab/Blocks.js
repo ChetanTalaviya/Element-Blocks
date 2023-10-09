@@ -3,7 +3,6 @@
 /* START OF COMPILED CODE */
 
 class Blocks extends Phaser.GameObjects.Container {
-
 	constructor(scene, x, y) {
 		super(scene, x ?? 0, y ?? 0);
 
@@ -112,7 +111,7 @@ class Blocks extends Phaser.GameObjects.Container {
 		const minDistance = 40;
 		let nearestDeck = null;
 		let deckNumber = null;
- 
+
 		for (const x in this.oScene.AllImageArray) {
 			const disFromOpenDeck = Phaser.Math.Distance.BetweenPoints(
 				gameObj,
@@ -160,8 +159,8 @@ class Blocks extends Phaser.GameObjects.Container {
 					box.destroy();
 				});
 			}
- 			this.destroyImage(this.aFinalMatchingImage);
-   			this.oScene.addNewPrefab(this.name);
+			this.destroyImage(this.aFinalMatchingImage);
+			this.oScene.addNewPrefab(this.name);
 		} else {
 			this.x = this.lastPosX;
 			this.y = this.lastPosY;
@@ -220,23 +219,21 @@ class Blocks extends Phaser.GameObjects.Container {
 				let xxY = 0;
 
 				for (let row_index = 0; row_index <= newrow; row_index++) {
+					console.log();
 					const img = this.createMaskImage(
 						this.oScene.AllImageArray[aXvalues].x + xxY,
 						this.oScene.AllImageArray[aXvalues].y
 					);
 
 					xxY += 74;
-					this.aFinalMatchingImage[this.aFinalMatchingImage.length] = {
-						col: col,
-						row: row + row_index,
-						img: this,
-					};
-					this.ismatchingBox(
-						col,
-						row + row_index,
-						(newcol),
-						(newrow)
-					);
+					if (row_index > 0 || Math.abs(newcol) === 0) {
+						this.aFinalMatchingImage[this.aFinalMatchingImage.length] = {
+							col: col,
+							row: row + row_index,
+							img: this,
+						};
+					}
+					this.ismatchingBox(col, row + row_index, newcol, newrow);
 				}
 				if (newrow_Z !== 0) {
 					const img = this.createMaskImage(
@@ -248,12 +245,7 @@ class Blocks extends Phaser.GameObjects.Container {
 						row: row + newrow,
 						img: this,
 					};
-					this.ismatchingBox(
-						col + 1,
-						row + newrow,
-						(newcol),
-						(newrow)
-					);
+					this.ismatchingBox(col + 1, row + newrow, newcol, newrow);
 				}
 			}
 		} else {
@@ -271,17 +263,14 @@ class Blocks extends Phaser.GameObjects.Container {
 						this.oScene.AllImageArray[aXvalues].x - xxY,
 						this.oScene.AllImageArray[aXvalues].y
 					);
-					this.aFinalMatchingImage[this.aFinalMatchingImage.length] = {
-						col: col,
-						row: row - row_index,
-						img: this,
-					};
-					this.ismatchingBox(
-						col,
-						row - row_index,
-						(newcol),
-						(newrow)
-					);
+					if (row_index > 0 || Math.abs(newcol) === 0) {
+						this.aFinalMatchingImage[this.aFinalMatchingImage.length] = {
+							col: col,
+							row: row - row_index,
+							img: this,
+						};
+					}
+					this.ismatchingBox(col, row - row_index, newcol, newrow);
 
 					xxY += 74;
 				}
@@ -289,7 +278,6 @@ class Blocks extends Phaser.GameObjects.Container {
 		}
 
 		if (newcol > 0) {
-
 			if (
 				col <= 7 - newcol &&
 				row <= 7 - newrow &&
@@ -297,7 +285,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				(newrow < 0 && newcol < 0 ? row >= Math.abs(newrow) : true) &&
 				this.isEmpty(col, row, newcol, 2, newrow, newrow_Z)
 			) {
-				let xxY = 0; 
+				let xxY = 0;
 				for (let col_index = 0; col_index <= newcol; col_index++) {
 					const img = this.createMaskImage(
 						this.oScene.AllImageArray[aXvalues].x,
@@ -308,12 +296,7 @@ class Blocks extends Phaser.GameObjects.Container {
 						row: row,
 						img: this,
 					};
-					this.ismatchingBox(
-						col + col_index,
-						row,
-						(newcol),
-						(newrow)
-					);
+					this.ismatchingBox(col + col_index, row, newcol, newrow);
 
 					xxY += 74;
 				}
@@ -338,12 +321,7 @@ class Blocks extends Phaser.GameObjects.Container {
 						row: row,
 						img: this,
 					};
-					this.ismatchingBox(
-						col - col_index,
-						row,
-						(newcol),
-						(newrow)
-					);
+					this.ismatchingBox(col - col_index, row, newcol, newrow);
 
 					xxY += 74;
 				}
@@ -360,9 +338,29 @@ class Blocks extends Phaser.GameObjects.Container {
 		const addImage = (i, is) => {
 			for (let k = 0; k <= 7; k++) {
 				if (is === "col") {
-					var img = this.oScene.add.image(this.oScene.AllImageObj[i][k].sprite.x, this.oScene.AllImageObj[i][k].sprite.y, this.color);
+					var img = this.oScene.add.image(
+						this.oScene.AllImageObj[i][k].sprite.x,
+						this.oScene.AllImageObj[i][k].sprite.y,
+						// this.color
+						this.oScene.AllImageObj[i][k].isStar ? this.oScene.AllImageObj[i][k].sprite.texture.key : this.color
+					);
+					// if(this.oScene.AllImageObj[i][k].isStar){
+					// 	console.log(k,i,this.oScene.AllImageObj[i][k].sprite.texture.key);
+
+					// }
+
 				} else {
-					var img = this.oScene.add.image(this.oScene.AllImageObj[k][i].sprite.x, this.oScene.AllImageObj[k][i].sprite.y, this.color);
+					var img = this.oScene.add.image(
+						this.oScene.AllImageObj[k][i].sprite.x,
+						this.oScene.AllImageObj[k][i].sprite.y,
+						// this.color
+						this.oScene.AllImageObj[k][i].sprite.isStar ? this.oScene.AllImageObj[k][i].sprite.texture.key : this.color
+
+					);
+					// if(this.oScene.AllImageObj[k][i].isStar){
+					// 	console.log(k,i,this.oScene.AllImageObj[k][i].sprite.texture.key);
+
+					// }
 				}
 				this.oScene.back_block_Cont.add(img);
 				this.aTempMtachImage.push(img);
@@ -390,11 +388,21 @@ class Blocks extends Phaser.GameObjects.Container {
 					addImage(i, "row");
 				}
 				if (newrow < 0) {
-					if (colSum === 7 && (col === i || col - newrow === i || (newrow == -2 ? col - (newrow + 1) === i : null))) {
+					if (
+						colSum === 7 &&
+						(col === i ||
+							col - newrow === i ||
+							(newrow == -2 ? col - (newrow + 1) === i : null))
+					) {
 						addImage(i, "col");
 					}
 				} else {
-					if (colSum === 7 && (col === i || col - newrow === i || (newrow == 2 ? col - (newrow - 1) === i : null))) {
+					if (
+						colSum === 7 &&
+						(col === i ||
+							col - newrow === i ||
+							(newrow == 2 ? col - (newrow - 1) === i : null))
+					) {
 						addImage(i, "col");
 					}
 				}
@@ -404,26 +412,38 @@ class Blocks extends Phaser.GameObjects.Container {
 					addImage(i, "col");
 				}
 				if (newcol < 0) {
-					if (rowSum === 7 && (row === i || row - newcol === i || (newcol == -2 ? row - (newcol + 1) === i : null))) {
+					if (
+						rowSum === 7 &&
+						(row === i ||
+							row - newcol === i ||
+							(newcol == -2 ? row - (newcol + 1) === i : null))
+					) {
 						addImage(i, "row");
 					}
 				} else {
-					if (rowSum === 7 && (row === i || row - newcol === i || (newcol == 2 ? row - (newcol - 1) === i : null) || (newcol == 3 ? (row - (newcol - 1) === i || row - (newcol - 2) === i) : null))) {
+					if (
+						rowSum === 7 &&
+						(row === i ||
+							row - newcol === i ||
+							(newcol == 2 ? row - (newcol - 1) === i : null) ||
+							(newcol == 3
+								? row - (newcol - 1) === i || row - (newcol - 2) === i
+								: null))
+					) {
 						addImage(i, "row");
 					}
 				}
-
 			}
 			if (newrow !== 0 && newcol !== 0) {
- 				if (newrow > 0) {
-					if ((rowSum + Math.abs(newrow) === 7) && row - Math.abs(newrow) === i) {
+				if (newrow > 0) {
+					if (rowSum + Math.abs(newrow) === 7 && row - Math.abs(newrow) === i) {
 						addImage(i, "row");
 					}
 					// else if ((rowSum + 1 === 8) && ( Math.abs(newrow) === 2 ? (row - 1 === i || row === i) : true)) {
 					// 	addImage(i, "row");
 
 					// }
-				  }
+				}
 				//    else {
 				// 	if ((rowSum + Math.abs(newrow) === 7) && row + Math.abs(newrow) === i) {
 				// 		addImage(i, "row");
@@ -445,102 +465,77 @@ class Blocks extends Phaser.GameObjects.Container {
 				// }
 			}
 		}
-
-
 	}
 
 	response() {
-		// const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
-		const i = 6;
+		const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
+		// const i = 11;
 		this.allImage = [];
 		const dis_X = 45;
 		const dis_Y = 45;
-		const aAllImage = [
-			"Bitmap 2",
-			"Bitmap 3",
-			"Bitmap 4",
-			"Bitmap 5",
-			"Bitmap 6",
-			"Bitmap 7",
-			"Bitmap 8",
-			// "mask"
-		];
-		const randomImage = aAllImage[Math.floor(Math.random() * aAllImage.length)];
+		const aAllImage = ["block-Blue", "block-green", "block-pink", "block-purple", "block-Red", "block-yellow"];
+		const aAllImagewithStar = ["s-blue", "s-green", "s-pink", "s-purple", "s-red", "s-yellow"];
+		let randomImageLenght = Math.floor(Math.random() * aAllImage.length)
+		const randomImage = aAllImage[randomImageLenght];
+		const randomImagewithStar = aAllImagewithStar[randomImageLenght];
 
 		const addImage = (x, y, imgs) => {
- 			const img = this.oScene.add.image(x, y, imgs);
-			this.color = imgs;
+			const img = this.oScene.add.image(x, y, imgs);
+			this.allImage.push({ img: img, color: imgs });
 			this.blocks_cont.add(img);
-			this.allImage.push(img);
 			img.setScale(0.6);
- 		};
+			this.color = imgs;
+			if (["s-blue", "s-green", "s-pink", "s-purple", "s-red", "s-yellow"].includes(imgs)) {
+				this.isStarImage = { isStar: true, img: imgs };
+			} else {
+				this.isStarImage = { isStar: false };
+			}
+		};
+
 		switch (i) {
 			case 0:
 				addImage(0, 0, randomImage);
-				this.name = {
-					x: 0,
-					y: 0,
-				};
+				this.name = { x: 0, y: 0 };
 				break;
 
 			case 1:
 				for (let index = 0; index <= 2; index++) {
 					addImage(-index * dis_X, 0, randomImage);
 				}
-				this.name = {
-					x: -2,
-					y: 0,
-				};
+				this.name = { x: -2, y: 0 };
 				break;
 			case 2:
 				for (let index = 0; index <= 1; index++) {
 					addImage(-index * dis_X, 0, randomImage);
 				}
-				this.name = {
-					x: -1,
-					y: 0,
-				};
+				this.name = { x: -1, y: 0 };
 				break;
 
 			case 3:
 				for (let index = 0; index <= 2; index++) {
 					addImage(index * dis_X, 0, randomImage);
 				}
-				this.name = {
-					x: 2,
-					y: 0,
-				};
+				this.name = { x: 2, y: 0 };
 				break;
 			case 4:
 				for (let index = 0; index <= 3; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
-				this.name = {
-					x: 0,
-					y: 3,
-				};
+				this.name = { x: 0, y: 3 };
 				break;
 			case 5:
 				for (let index = 0; index <= 2; index++) {
 					addImage(0, -index * dis_Y, randomImage);
 				}
-				this.name = {
-					x: 0,
-					y: -2,
-				};
+				this.name = { x: 0, y: -2 };
 				break;
 			case 6:
+				addImage(-dis_X, 0, randomImagewithStar);
+				addImage(-dis_X * 2, 0, randomImage);
 				for (let index = 0; index <= 2; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
-				addImage(-dis_X, 0, "star");
-				addImage(-dis_X, 0,randomImage);
-				addImage(-dis_X * 2, 0, randomImage);
-				this.name = {
-					x: -2,
-					y: 2,
-				};
-				this.isStar = true;
+				this.name = { x: -2, y: 2 };
 				break;
 			case 7:
 				for (let index = 0; index <= 2; index++) {
@@ -548,10 +543,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				}
 				addImage(dis_X, 0, randomImage);
 				addImage(dis_X * 2, 0, randomImage);
-				this.name = {
-					x: 2,
-					y: -2,
-				};
+				this.name = { x: 2, y: -2 };
 				break;
 			case 8:
 				for (let index = 0; index <= 2; index++) {
@@ -559,68 +551,42 @@ class Blocks extends Phaser.GameObjects.Container {
 				}
 				addImage(-dis_X, 0, randomImage);
 				addImage(-dis_X * 2, 0, randomImage);
-				this.name = {
-					x: -2,
-					y: -2,
-				};
+				this.name = { x: -2, y: -2 };
 				break;
 			case 9:
+				addImage(-dis_X, 0, randomImagewithStar);
 				for (let index = 0; index <= 1; index++) {
 					addImage(0, -index * dis_Y, randomImage);
 				}
-				addImage(-dis_X, 0, "star");
-				addImage(-dis_X, 0, randomImage);
-				this.name = {
-					x: -1,
-					y: -1,
-				};
+				this.name = { x: -1, y: -1 };
 				break;
 			case 10:
+				addImage(dis_X, 0, randomImagewithStar);
 				for (let index = 0; index <= 1; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
-				addImage(dis_X, 0, "star");
-				addImage(dis_X, 0, randomImage);
-				this.name = {
-					x: 1,
-					y: 1,
-				};
+				this.name = { x: 1, y: 1 };
 				break;
 			case 11:
-				for (let index = 0; index <= 2; index++) {
-					addImage(0, index * dis_Y, randomImage);
-				}
-				addImage(dis_X * 2, 0, "star");
+				addImage(0, 0, randomImage);
+				addImage(dis_X * 2, 0, randomImagewithStar);
+				addImage(0, 45, randomImage);
+				addImage(0, 90, randomImage);
 				addImage(dis_X, 0, randomImage);
-				addImage(dis_X * 2, 0, randomImage);
-				this.name = {
-					x: 2,
-					y: 2,
-				};
+				this.name = { x: 2, y: 2 };
 				break;
 			case 12:
-				for (let index = 0; index <= 1; index++) {
-					addImage(0, index * dis_Y, randomImage);
-				}
-				addImage(dis_X, dis_Y, "star");
+				addImage(0, 0, randomImage);
+				addImage(dis_X, dis_Y, randomImagewithStar);
+				addImage(0, 45, randomImage);
 				addImage(dis_X, 0, randomImage);
-				addImage(dis_X, dis_Y, randomImage);
-				this.name = {
-					x: 1,
-					y: 1,
-					z: 1,
-				};
+				this.name = { x: 1, y: 1, z: 1 };
 				break;
 		}
- 
 	}
 	isEmpty(col, row, aArray_1, i, aArray_2, newrow_Z) {
-		return (
-			this.isHorizontalMatch(col, row, aArray_1, i, aArray_2, newrow_Z)  
-			// this.isHorizontalMatch(col, row, aArray_1, i, aArray_2, newrow_Z)
-		);
+		return this.isHorizontalMatch(col, row, aArray_1, i, aArray_2, newrow_Z);
 	}
-
 	isHorizontalMatch(col, row, aArray_1, i, aArray_2, newrow_Z) {
 		let result = -1;
 		const array = Math.abs(aArray_1);
@@ -782,14 +748,18 @@ class Blocks extends Phaser.GameObjects.Container {
 		return img;
 	}
 	destroyImage(aArray) {
-   
- 		for (let index = 0; index < aArray.length; index++) {
+		// console.log(aArray);
+		for (let index = 0; index < aArray.length; index++) {
 			this.oScene.removeArray[aArray[index].col][aArray[index].row] = 1;
-			this.oScene.AllImageObj[aArray[index].row][aArray[index].col].sprite.setTexture(
-				this.color
-			);
+			this.oScene.AllImageObj[aArray[index].row][
+				aArray[index].col
+			].sprite.setTexture(this.allImage[index].color);
+			this.oScene.AllImageObj[aArray[index].row][aArray[index].col].isStar =
+				["s-blue", "s-green", "s-pink", "s-purple", "s-red", "s-yellow"].includes(this.allImage[index].color) ? true : false;
+			// this.allImage[index].color === "s-yellow" ? true : false;
 		}
 		if (this.matchInBoard().ismatch) {
+			// console.log(this.oScene.AllImageObj);
 			const nArray = this.matchInBoard().result;
 			for (let result_Array = 0; result_Array < nArray.length; result_Array++) {
 				this.setWinner();
@@ -797,26 +767,72 @@ class Blocks extends Phaser.GameObjects.Container {
 				for (let index = 0; index <= 7; index++) {
 					if (matchValue.Direction === "col") {
 						this.oScene.removeArray[index][matchValue.DrconNmbr] = 0;
-						this.oScene.AllImageObj[matchValue.DrconNmbr][index].sprite.setTexture(
-							"Bitmap"
-						);
+						this.oScene.AllImageObj[matchValue.DrconNmbr][
+							index
+						].sprite.setTexture("back-Box");
 						this.matchAnimation(
 							this.oScene.AllImageObj[matchValue.DrconNmbr][index].sprite.x,
 							this.oScene.AllImageObj[matchValue.DrconNmbr][index].sprite.y
 						);
+						if (this.oScene.AllImageObj[matchValue.DrconNmbr][index].isStar) {
+							this.addStar(index, matchValue.DrconNmbr)
+
+						}
 					} else {
 						this.oScene.removeArray[matchValue.DrconNmbr][index] = 0;
-						this.oScene.AllImageObj[index][matchValue.DrconNmbr].sprite.setTexture(
-							"Bitmap"
-						);
+						this.oScene.AllImageObj[index][
+							matchValue.DrconNmbr
+						].sprite.setTexture("back-Box");
 						this.matchAnimation(
 							this.oScene.AllImageObj[index][matchValue.DrconNmbr].sprite.x,
 							this.oScene.AllImageObj[index][matchValue.DrconNmbr].sprite.y
 						);
+						if (this.oScene.AllImageObj[index][matchValue.DrconNmbr].isStar) {
+							this.addStar(matchValue.DrconNmbr, index)
+
+						}
 					}
 				}
 			}
 		}
+	}
+	addStar(col, row) {
+		this.oScene.nTotalStar += 1;
+		this.oScene.AllImageObj[row][col].isStar = false;
+		let nTempx = this.oScene.AllImageObj[row][col].sprite.x;
+		let nTempy = this.oScene.AllImageObj[row][col].sprite.y;
+		let star = this.oScene.add.image(nTempx, nTempy, "star").setScale(0.4);
+		const emitter = this.oScene.add.particles(nTempx, nTempy, "star", {
+			scale: { min: 0.015, max: 0.015 },
+			speed: { min: 50, max: 150 },
+			lifespan: 500,
+			maxParticles: 100,
+		});
+
+		this.oScene.tweens.add({
+			targets: [star, emitter],
+			duration: 400,
+			rotation: -1,
+			x: { start: nTempx, to: nTempx + 50 },
+			y: nTempy + 20,
+			onComplete: () => {
+				this.oScene.tweens.add({
+					targets: [star, emitter],
+					x: { start: nTempx + 50, to: this.oScene.stars.x },
+					y: { start: nTempy + 20, to: this.oScene.stars.y },
+					ease: 'Linear',
+					duration: 600,
+					rotation: -5,
+					onComplete: () => {
+						star.setVisible(false);
+						this.oScene.text_star.text = this.oScene.nTotalStar;
+						setTimeout(() => emitter.stop(), 200);
+					}
+				});
+			}
+		});
+
+
 	}
 
 	matchInBoard() {
@@ -841,9 +857,7 @@ class Blocks extends Phaser.GameObjects.Container {
 	}
 	matchAnimation(x, y) {
 		const emitter = this.oScene.add.particles(x, y, this.color, {
-			// rotate: { start: 0, end: 360 },
 			speed: { min: 100, max: 200 },
-			// alpha: { start: 1, end: 0.5 },
 			scale: 0.3,
 			lifespan: 200,
 			frequency: 6,
@@ -852,6 +866,7 @@ class Blocks extends Phaser.GameObjects.Container {
 		setTimeout(() => {
 			emitter.stop();
 		}, 100);
+
 	}
 
 	setWinner() {
@@ -869,7 +884,7 @@ class Blocks extends Phaser.GameObjects.Container {
 }
 
 /* END-USER-CODE */
- 
+
 /* END OF COMPILED CODE */
 
 // You can write more code here

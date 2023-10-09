@@ -2,8 +2,8 @@
 window.addEventListener('load', function () {
 
 	this.game = new Phaser.Game({
-		width: 1280,
-		height: 720,
+  		width: window.innerWidth >= 820 ? 1280 : window.innerWidth,
+		height: window.innerWidth >= 1920 ? 720 : window.innerHeight,
 		type: Phaser.AUTO,
 		backgroundColor: "#242424",
 		transparent: true,

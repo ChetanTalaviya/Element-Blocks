@@ -6,10 +6,10 @@
 class Bom extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "bom", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "bomb", frame);
 
-		this.scaleX = 0.37;
-		this.scaleY = 0.37;
+		this.scaleX = 0.5;
+		this.scaleY = 0.5;
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -24,7 +24,7 @@ class Bom extends Phaser.GameObjects.Sprite {
 
 	// Write your code here.
 	setDrageble() {
-		this.setSize(120, 120);
+		this.setSize(175, 175);
 		this.setInteractive();
 		this.oScene.input.setDraggable(this);
 		this.lastPosX = this.x;
@@ -32,10 +32,10 @@ class Bom extends Phaser.GameObjects.Sprite {
 		const self = this;
 		this.lastRowAndCol = null
 
-		this.on("pointerdown", () => { this.setScale(0.75); }, self);
+ 		this.on("pointerdown", () => { this.oScene.bIBomDrag ? this.setScale(0.75) : null }, self);
 
 		this.oScene.input.on("drag", function (pointer, gameObj, dragX, dragY) {
-			if (gameObj === self) {
+			if (gameObj === self && this.oScene.bIBomDrag) {
 				gameObj.x = dragX;
 				gameObj.y = dragY;
 				gameObj.setScale(0.75);
@@ -44,7 +44,7 @@ class Bom extends Phaser.GameObjects.Sprite {
 		}, this);
 
 		this.oScene.input.on("dragend", function (pointer, gameObj) {
-			if (gameObj === self) {
+			if (gameObj === self && this.oScene.bIBomDrag) {
 				if (this.lastRowAndCol !== null) {
 					this.setFinalbombblast()
 				} else {
@@ -100,28 +100,30 @@ class Bom extends Phaser.GameObjects.Sprite {
 		const row = this.lastRowAndCol.Row;
 
 		if (col >= 0 && col < 8 && row >= 0 && row < 8) {
-			const gem = this.oScene.add.sprite(this.oScene.AllImageObj[row][col].sprite.x, this.oScene.AllImageObj[row][col].sprite.y, "Bitmap")
+			const gem = this.oScene.add.sprite(this.oScene.AllImageObj[row][col].sprite.x, this.oScene.AllImageObj[row][col].sprite.y, "back-Box")
 
 			gem.play('bom_anim').setScale(1.5)
 			for (let i = row - 1; i <= row + 1; i++) {
 				for (let j = col - 1; j <= col + 1; j++) {
 					if (i >= 0 && i <= 7 && j >= 0 && j <= 7) {
-						this.oScene.AllImageObj[i][j].sprite.setTexture("Bitmap");
+						this.oScene.AllImageObj[i][j].sprite.setTexture("back-Box");
 						this.oScene.removeArray[j][i] = 0;
 					}
 				}
 			}
 		}
 		this.setAlphavalues(1);
-		this.lastRowAndCol = null
+		this.lastRowAndCol = null;
+		this.oScene.bIBomDrag = false;
+		this.oScene.btn_pls_bom.setTexture("btn_pls")
 
-	}
+	}	
 
 
 	setAlphavalues(alphaValue) {
 		for (let index_col = 0; index_col < 8; index_col++) {
 			for (let index_row = 0; index_row < 8; index_row++) {
-				this.oScene.AllImageObj[index_col][index_row].alpha = alphaValue;
+				this.oScene.AllImageObj[index_col][index_row].sprite.alpha = alphaValue;
 			}
 		}
 	}

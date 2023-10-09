@@ -6,10 +6,10 @@
 class Diamond extends Phaser.GameObjects.Image {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "dd", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "Hammer", frame);
 
-		this.scaleX = 0.35;
-		this.scaleY = 0.35;
+		this.scaleX = 0.5;
+		this.scaleY = 0.5;
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -24,18 +24,19 @@ class Diamond extends Phaser.GameObjects.Image {
 
 	// Write your code here.
 	setDrageble() {
-		this.setSize(100, 100);
+		this.setSize(172, 175);
 		this.setInteractive();
-		this.oScene.input.setDraggable(this);
+
+ 		this.oScene.input.setDraggable(this);
 		this.lastPosX = this.x;
 		this.lastPosY = this.y;
 		const self = this;
 		this.lastRowAndCol = null
 
-		this.on("pointerdown", () => { this.setScale(0.75); }, self);
+		this.on("pointerdown", () => { this.oScene.bIDiamondDrag ? this.setScale(0.75) : null }, self);
 
 		this.oScene.input.on("drag", function (pointer, gameObj, dragX, dragY) {
-			if (gameObj === self) {
+			if (gameObj === self && this.oScene.bIDiamondDrag) {
 				gameObj.x = dragX;
 				gameObj.y = dragY;
 				gameObj.setScale(0.75);
@@ -44,7 +45,7 @@ class Diamond extends Phaser.GameObjects.Image {
 		}, this);
 
 		this.oScene.input.on("dragend", function (pointer, gameObj) {
-			if (gameObj === self) {
+			if (gameObj === self && this.oScene.bIDiamondDrag) {
 				if (this.lastRowAndCol !== null) {
 					this.setFinalbombblast()
 				} else {
@@ -73,12 +74,12 @@ class Diamond extends Phaser.GameObjects.Image {
 
 			}
 		}
-		if (nearestDeck !== null && nearestDeck.texture.key !== "Bitmap") {
+		if (nearestDeck !== null && nearestDeck.texture.key !== "back-Box") {
 			this.sethighlitbox(parseInt(nearestDeck.name.split("")[2]), parseInt(nearestDeck.name.split("")[0]), nearestDeck.texture.key)
 			gameObj.x = nearestDeck.x;
 			gameObj.y = nearestDeck.y;
 		}
-		if (nearestDeck !== null && nearestDeck.texture.key === "Bitmap") {
+		if (nearestDeck !== null && nearestDeck.texture.key === "back-Box") {
 			this.setAlphavalues(1);
 			this.lastRowAndCol = null
 		}
@@ -100,20 +101,19 @@ class Diamond extends Phaser.GameObjects.Image {
 		const row = this.lastRowAndCol.Row;
 		const color = this.lastRowAndCol.Color;
 
-		const gem = this.oScene.add.sprite(this.oScene.AllImageObj[row][col].sprite.x, this.oScene.AllImageObj[row][col].sprite.y, "Bitmap")
-
-		gem.play('bom_anim').setScale(1.5);
-
 		for (let index_col = 0; index_col < 8; index_col++) {
 			for (let index_row = 0; index_row < 8; index_row++) {
 				if (color === this.oScene.AllImageObj[index_col][index_row].sprite.texture.key)
-					this.oScene.AllImageObj[index_col][index_row].sprite.setTexture("Bitmap");
+					this.oScene.AllImageObj[index_col][index_row].sprite.setTexture("back-Box");
 				this.oScene.removeArray[index_row][index_col] = 0;
 
 			}
 		}
 		this.setAlphavalues(1);
-		this.lastRowAndCol = null
+		this.lastRowAndCol = null;
+		this.oScene.bIDiamondDrag = false;
+		this.oScene.btn_pls_diamond.setTexture("btn_pls")
+
 	}
 
 

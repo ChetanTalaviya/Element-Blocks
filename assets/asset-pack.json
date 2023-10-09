@@ -12,49 +12,54 @@
                 "key": "back"
             },
             {
-                "url": "assets/background.jpg",
+                "url": "assets/image/block/back-Box.png",
+                "type": "image",
+                "key": "back-Box"
+            },
+            {
+                "url": "assets/back-star.png",
+                "type": "image",
+                "key": "back-star"
+            },
+            {
+                "url": "assets/image/background/background.png",
                 "type": "image",
                 "key": "background"
             },
             {
-                "url": "assets/Bitmap.png",
+                "url": "assets/image/background/background-Box.png",
                 "type": "image",
-                "key": "Bitmap"
+                "key": "background-Box"
             },
             {
-                "url": "assets/Bitmap 2.png",
+                "url": "assets/image/block/block-Blue.png",
                 "type": "image",
-                "key": "Bitmap 2"
+                "key": "block-Blue"
             },
             {
-                "url": "assets/Bitmap 3.png",
+                "url": "assets/image/block/block-green.png",
                 "type": "image",
-                "key": "Bitmap 3"
+                "key": "block-green"
             },
             {
-                "url": "assets/Bitmap 4.png",
+                "url": "assets/image/block/block-pink.png",
                 "type": "image",
-                "key": "Bitmap 4"
+                "key": "block-pink"
             },
             {
-                "url": "assets/Bitmap 5.png",
+                "url": "assets/image/block/block-purple.png",
                 "type": "image",
-                "key": "Bitmap 5"
+                "key": "block-purple"
             },
             {
-                "url": "assets/Bitmap 6.png",
+                "url": "assets/image/block/block-Red.png",
                 "type": "image",
-                "key": "Bitmap 6"
+                "key": "block-Red"
             },
             {
-                "url": "assets/Bitmap 7.png",
+                "url": "assets/image/block/block-yellow.png",
                 "type": "image",
-                "key": "Bitmap 7"
-            },
-            {
-                "url": "assets/Bitmap 8.png",
-                "type": "image",
-                "key": "Bitmap 8"
+                "key": "block-yellow"
             },
             {
                 "url": "src/Prefab/Blocks.js",
@@ -62,9 +67,9 @@
                 "key": "Blocks"
             },
             {
-                "url": "assets/bom.png",
+                "url": "assets/bnt_lock.png",
                 "type": "image",
-                "key": "bom"
+                "key": "bnt_lock"
             },
             {
                 "url": "src/Prefab/Bom.js",
@@ -85,14 +90,19 @@
                 "key": "bom_animation"
             },
             {
-                "url": "assets/Clouds.png",
+                "url": "assets/image/background/bomb.png",
                 "type": "image",
-                "key": "Clouds"
+                "key": "bomb"
             },
             {
-                "url": "assets/dd.png",
+                "url": "assets/btn_pls.png",
                 "type": "image",
-                "key": "dd"
+                "key": "btn_pls"
+            },
+            {
+                "url": "assets/btn_right.png",
+                "type": "image",
+                "key": "btn_right"
             },
             {
                 "url": "src/Prefab/Diamond.js",
@@ -105,29 +115,64 @@
                 "type": "image"
             },
             {
-                "url": "assets/ElementBlocksTeaser.jpg",
+                "url": "assets/image/background/Hammer.png",
                 "type": "image",
-                "key": "ElementBlocksTeaser"
+                "key": "Hammer"
             },
             {
-                "url": "assets/field-cover.png",
+                "url": "assets/image/background/hammer-box.png",
                 "type": "image",
-                "key": "field-cover"
+                "key": "hammer-box"
             },
             {
-                "url": "assets/mask.png",
+                "url": "assets/image/background/innerBar.png",
                 "type": "image",
-                "key": "mask"
+                "key": "innerBar"
             },
             {
-                "url": "assets/star.png",
+                "url": "assets/image/background/outerBar.png",
+                "type": "image",
+                "key": "outerBar"
+            },
+            {
+                "url": "assets/image/block/s-blue.png",
+                "type": "image",
+                "key": "s-blue"
+            },
+            {
+                "url": "assets/image/block/s-green.png",
+                "type": "image",
+                "key": "s-green"
+            },
+            {
+                "url": "assets/image/block/s-pink.png",
+                "type": "image",
+                "key": "s-pink"
+            },
+            {
+                "url": "assets/image/block/s-purple.png",
+                "type": "image",
+                "key": "s-purple"
+            },
+            {
+                "url": "assets/image/block/s-red.png",
+                "type": "image",
+                "key": "s-red"
+            },
+            {
+                "url": "assets/image/block/s-yellow.png",
+                "type": "image",
+                "key": "s-yellow"
+            },
+            {
+                "url": "assets/image/background/side-box.png",
+                "type": "image",
+                "key": "side-box"
+            },
+            {
+                "url": "assets/image/background/star.png",
                 "type": "image",
                 "key": "star"
-            },
-            {
-                "url": "assets/stars.png",
-                "type": "image",
-                "key": "stars"
             },
             {
                 "url": "src/script/UiManager.js",
