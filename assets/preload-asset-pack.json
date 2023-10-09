@@ -18,6 +18,11 @@
                 "url": "assets/guapen.png",
                 "type": "image",
                 "key": "guapen"
+            },
+            {
+                "url": "assets/image/winning-Screen/Play-btn.png",
+                "type": "image",
+                "key": "Play-btn"
             }
         ]
     },

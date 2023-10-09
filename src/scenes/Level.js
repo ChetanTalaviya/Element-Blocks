@@ -20,7 +20,7 @@ class Level extends Phaser.Scene {
 		const back_block_Cont = this.add.container(0, 0);
 
 		// background_Box
-		const background_Box = this.add.image(690, 363, "background-Box");
+		const background_Box = this.add.image(691, 363, "background-Box");
 		background_Box.scaleX = 1.03;
 		background_Box.scaleY = 1.03;
 		back_block_Cont.add(background_Box);
@@ -69,7 +69,9 @@ class Level extends Phaser.Scene {
 		container_star.add(outerBar);
 
 		// innerBar
-		const innerBar = this.add.image(165, 283, "innerBar");
+		const innerBar = this.add.image(29, 283, "innerBar");
+		innerBar.scaleX = 0;
+		innerBar.setOrigin(0, 0.5);
 		container_star.add(innerBar);
 
 		// stars
@@ -86,7 +88,7 @@ class Level extends Phaser.Scene {
 		// text_leval
 		const text_leval = this.add.text(168, 117, "", {});
 		text_leval.setOrigin(0.5, 0.5);
-		text_leval.text = "Leval : 1";
+		text_leval.text = "Level : 1";
 		text_leval.setStyle({ "fontFamily": "Allerta", "fontSize": "50px" });
 		container_star.add(text_leval);
 
@@ -144,11 +146,94 @@ class Level extends Phaser.Scene {
 		btn_close.angle = 45;
 		container_by_bom.add(btn_close);
 
+		// container_level_failed
+		const container_level_failed = this.add.container(0, 0);
+		container_level_failed.visible = false;
+
+		// level_failed_popup
+		const level_failed_popup = this.add.image(703, 266, "Level-failed-popup");
+		level_failed_popup.scaleX = 0.8;
+		level_failed_popup.scaleY = 0.8;
+		container_level_failed.add(level_failed_popup);
+
+		// failed_score_txt
+		const failed_score_txt = this.add.text(699, 444, "", {});
+		failed_score_txt.setOrigin(0.5, 0.5);
+		failed_score_txt.text = "SCORE : 50";
+		failed_score_txt.setStyle({ "fontFamily": "Allerta", "fontSize": "40px" });
+		container_level_failed.add(failed_score_txt);
+
+		// failed_level_txt
+		const failed_level_txt = this.add.text(702, 246, "", {});
+		failed_level_txt.setOrigin(0.5, 0.5);
+		failed_level_txt.text = "Level: 01";
+		failed_level_txt.setStyle({ "fontFamily": "Allerta", "fontSize": "30px" });
+		container_level_failed.add(failed_level_txt);
+
+		// replay_btn_failed
+		const replay_btn_failed = this.add.image(697, 538, "replay-btn");
+		container_level_failed.add(replay_btn_failed);
+
+		// container_winner
+		const container_winner = this.add.container(0, 0);
+		container_winner.visible = false;
+
+		// level_complete_popup
+		const level_complete_popup = this.add.image(703, 266, "level-complete-popup");
+		level_complete_popup.scaleX = 0.8;
+		level_complete_popup.scaleY = 0.8;
+		container_winner.add(level_complete_popup);
+
+		// play_btn
+		const play_btn = this.add.image(849, 530, "Play-btn");
+		container_winner.add(play_btn);
+
+		// replay_btn
+		const replay_btn = this.add.image(556, 530, "replay-btn");
+		container_winner.add(replay_btn);
+
+		// home_btn
+		const home_btn = this.add.image(702, 530, "Home-btn");
+		container_winner.add(home_btn);
+
+		// winning_score_txt
+		const winning_score_txt = this.add.text(701, 445, "", {});
+		winning_score_txt.setOrigin(0.5, 0.5);
+		winning_score_txt.text = "SCORE : 50";
+		winning_score_txt.setStyle({ "fontFamily": "Allerta", "fontSize": "40px" });
+		container_winner.add(winning_score_txt);
+
+		// winning_level_txt
+		const winning_level_txt = this.add.text(701, 247, "", {});
+		winning_level_txt.setOrigin(0.5, 0.5);
+		winning_level_txt.text = "Level: 01";
+		winning_level_txt.setStyle({ "fontFamily": "Allerta", "fontSize": "30px" });
+		container_winner.add(winning_level_txt);
+
+		// glowing_star_3
+		const glowing_star_3 = this.add.image(804, 351, "Glowing-star");
+		glowing_star_3.scaleX = 0.5;
+		glowing_star_3.scaleY = 0.5;
+		container_winner.add(glowing_star_3);
+
+		// glowing_star_2
+		const glowing_star_2 = this.add.image(699, 333, "Glowing-star");
+		glowing_star_2.scaleX = 0.72;
+		glowing_star_2.scaleY = 0.72;
+		container_winner.add(glowing_star_2);
+
+		// glowing_star_1
+		const glowing_star_1 = this.add.image(594, 351, "Glowing-star");
+		glowing_star_1.scaleX = 0.5;
+		glowing_star_1.scaleY = 0.5;
+		container_winner.add(glowing_star_1);
+
 		this.back_block_Cont = back_block_Cont;
 		this.btn_pls_bom = btn_pls_bom;
 		this.btn_pls_diamond = btn_pls_diamond;
 		this.side_cont = side_cont;
 		this.container_side_block = container_side_block;
+		this.innerBar = innerBar;
 		this.stars = stars;
 		this.text_star = text_star;
 		this.text_leval = text_leval;
@@ -158,6 +243,16 @@ class Level extends Phaser.Scene {
 		this.txt_Total_star = txt_Total_star;
 		this.btn_close = btn_close;
 		this.container_by_bom = container_by_bom;
+		this.failed_score_txt = failed_score_txt;
+		this.failed_level_txt = failed_level_txt;
+		this.replay_btn_failed = replay_btn_failed;
+		this.container_level_failed = container_level_failed;
+		this.play_btn = play_btn;
+		this.replay_btn = replay_btn;
+		this.home_btn = home_btn;
+		this.winning_score_txt = winning_score_txt;
+		this.winning_level_txt = winning_level_txt;
+		this.container_winner = container_winner;
 
 		this.events.emit("scene-awake");
 	}
@@ -172,6 +267,8 @@ class Level extends Phaser.Scene {
 	side_cont;
 	/** @type {Phaser.GameObjects.Container} */
 	container_side_block;
+	/** @type {Phaser.GameObjects.Image} */
+	innerBar;
 	/** @type {Phaser.GameObjects.Image} */
 	stars;
 	/** @type {Phaser.GameObjects.Text} */
@@ -190,6 +287,26 @@ class Level extends Phaser.Scene {
 	btn_close;
 	/** @type {Phaser.GameObjects.Container} */
 	container_by_bom;
+	/** @type {Phaser.GameObjects.Text} */
+	failed_score_txt;
+	/** @type {Phaser.GameObjects.Text} */
+	failed_level_txt;
+	/** @type {Phaser.GameObjects.Image} */
+	replay_btn_failed;
+	/** @type {Phaser.GameObjects.Container} */
+	container_level_failed;
+	/** @type {Phaser.GameObjects.Image} */
+	play_btn;
+	/** @type {Phaser.GameObjects.Image} */
+	replay_btn;
+	/** @type {Phaser.GameObjects.Image} */
+	home_btn;
+	/** @type {Phaser.GameObjects.Text} */
+	winning_score_txt;
+	/** @type {Phaser.GameObjects.Text} */
+	winning_level_txt;
+	/** @type {Phaser.GameObjects.Container} */
+	container_winner;
 
 	/* START-USER-CODE */
 
@@ -198,13 +315,28 @@ class Level extends Phaser.Scene {
 	create() {
 
 		this.editorCreate();
+		this.oLevalData =
+			[{ nMaxScore: 20 },
+			{ nMaxScore: 21 },
+			{ nMaxScore: 22 },
+			{ nMaxScore: 40 },
+			{ nMaxScore: 50 },
+			{ nMaxScore: 60 },
+			{ nMaxScore: 70 },
+			{ nMaxScore: 80 },
+			{ nMaxScore: 95 },
+			{ nMaxScore: 100 },
+			]
+		this.nCurruntLeval = Math.min(this.oLevalData.length-1, JSON.parse(localStorage.getItem("nCurruntLeval") == null ? 0 : localStorage.getItem("nCurruntLeval")));
+		this.text_leval.setText(`Level : ${this.nCurruntLeval + 1}`);
+		this.nCurruntLevalData = this.oLevalData[Math.min(this.oLevalData.length-1, this.nCurruntLeval)];
 
-		this.AllImageObj = [];
+ 		this.AllImageObj = [];
 		this.AllImageArray = [];
 		this.removeArray = [];
 		this.allPrefab = [];
 		this.nPrefab = 0;
-		this.nTotalStar = 100;
+		this.nTotalStar = 18;
 		this.bIBomDrag = false
 		this.bIDiamondDrag = false
 
@@ -219,11 +351,14 @@ class Level extends Phaser.Scene {
 			}
 		}
 
-		this.block_1 = new Blocks(this, 1100, 150);
-		this.block_2 = new Blocks(this, 1100, 350);
-		this.block_3 = new Blocks(this, 1100, 550);
+		this.block_1 = new Blocks(this, 1175, 150);
+		this.block_2 = new Blocks(this, 1175, 350);
+		this.block_3 = new Blocks(this, 1175, 550);
+		this.block_1.setPosition(this.block_1.nPosition.x + this.block_1.x, this.block_1.nPosition.y + this.block_1.y)
+		this.block_2.setPosition(this.block_2.nPosition.x + this.block_2.x, this.block_2.nPosition.y + this.block_2.y)
+		this.block_3.setPosition(this.block_3.nPosition.x + this.block_3.x, this.block_3.nPosition.y + this.block_3.y)
 		this.allPrefab.push(this.block_1, this.block_2, this.block_3);
-		// this.container_side_block.add([this.block_1, this.block_2, this.block_3])
+		this.container_side_block.add([this.block_1, this.block_2, this.block_3])
 		for (let i = 0; i < 8; i++) {
 			this.removeArray[i] = []
 			for (let j = 0; j < 8; j++) {
@@ -232,7 +367,6 @@ class Level extends Phaser.Scene {
 		}
 
 		this.oUiManager = new UiManager(this);
-		this.addPartical();
 
 		// Set interactive behavior for this.bnt_lock_bom
 		this.bnt_lock_bom.setInteractive().on('pointerdown', () => {
@@ -267,14 +401,33 @@ class Level extends Phaser.Scene {
 			this.container_by_bom.setVisible(false);
 		});
 
+		this.replay_btn.setInteractive().on('pointerdown', () => {
+			this.scene.restart();
+		})
+		this.home_btn.setInteractive().on('pointerdown', () => {
+			this.scene.start("Preload");
+		})
+		this.play_btn.setInteractive().on('pointerdown', () => {
+			this.scene.restart();
+			localStorage.setItem("nCurruntLeval", this.nCurruntLeval += 1);
+
+		})
+
+		this.replay_btn_failed.setInteractive().on('pointerdown', () => {
+			this.scene.restart();
+		});
 
 		if (window.innerWidth <= 820) {
+			// this.openFullscreen();
 			this.back_block_Cont.setScale(0.5);
-			this.back_block_Cont.setPosition(-140, 140);
-			this.side_cont.setScale(0.5)
+			this.back_block_Cont.setPosition(-165, 150);
+			this.side_cont.setScale(0.5);
+			this.container_star.setScale(0.5);
+			this.container_side_block.setScale(0.5);
+			// this.container_side_block.x -=500;
+			// this.container_side_block.setAngle(-90)
 
 		}
-
 
 
 	}
@@ -282,9 +435,12 @@ class Level extends Phaser.Scene {
 		this.nPrefab++;
 		if (this.nPrefab % 3 == 0) {
 			this.allPrefab = [];
-			this.block_1 = new Blocks(this, 1100, 150);
-			this.block_2 = new Blocks(this, 1100, 350);
-			this.block_3 = new Blocks(this, 1100, 550);
+			this.block_1 = new Blocks(this, 1175, 150);
+			this.block_2 = new Blocks(this, 1175, 350);
+			this.block_3 = new Blocks(this, 1175, 550);
+			this.block_1.setPosition(this.block_1.nPosition.x + this.block_1.x, this.block_1.nPosition.y + this.block_1.y)
+			this.block_2.setPosition(this.block_2.nPosition.x + this.block_2.x, this.block_2.nPosition.y + this.block_2.y)
+			this.block_3.setPosition(this.block_3.nPosition.x + this.block_3.x, this.block_3.nPosition.y + this.block_3.y)
 			this.allPrefab.push(this.block_1, this.block_2, this.block_3);
 			this.container_side_block.add([this.block_1, this.block_2, this.block_3])
 
@@ -331,7 +487,7 @@ class Level extends Phaser.Scene {
 			if (aNotPosibleBlock.length === this.allPrefab.length) {
 				console.log("**************************************");
 				setTimeout(() => {
-					this.oUiManager.setWinnwrAnimation();
+					this.oUiManager.setNotWinnerAnimation();
 				}, 1000);
 
 
@@ -431,9 +587,8 @@ class Level extends Phaser.Scene {
 
 
 	}
-	addPartical() {
 
-	}
+
 
 	/* END-USER-CODE */
 }

@@ -115,6 +115,16 @@
                 "type": "image"
             },
             {
+                "url": "assets/image/winning-Screen/Glow-for-star.png",
+                "type": "image",
+                "key": "Glow-for-star"
+            },
+            {
+                "url": "assets/image/winning-Screen/Glowing-star.png",
+                "type": "image",
+                "key": "Glowing-star"
+            },
+            {
                 "url": "assets/image/background/Hammer.png",
                 "type": "image",
                 "key": "Hammer"
@@ -125,14 +135,34 @@
                 "key": "hammer-box"
             },
             {
+                "url": "assets/image/winning-Screen/Home-btn.png",
+                "type": "image",
+                "key": "Home-btn"
+            },
+            {
                 "url": "assets/image/background/innerBar.png",
                 "type": "image",
                 "key": "innerBar"
             },
             {
+                "url": "assets/image/winning-Screen/level-complete-popup.png",
+                "type": "image",
+                "key": "level-complete-popup"
+            },
+            {
+                "url": "assets/image/winning-Screen/Level-failed-popup.png",
+                "type": "image",
+                "key": "Level-failed-popup"
+            },
+            {
                 "url": "assets/image/background/outerBar.png",
                 "type": "image",
                 "key": "outerBar"
+            },
+            {
+                "url": "assets/image/winning-Screen/replay-btn.png",
+                "type": "image",
+                "key": "replay-btn"
             },
             {
                 "url": "assets/image/block/s-blue.png",

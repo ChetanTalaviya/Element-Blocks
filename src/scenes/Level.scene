@@ -22,7 +22,7 @@
                     "texture": {
                         "key": "background-Box"
                     },
-                    "x": 690,
+                    "x": 691,
                     "y": 363,
                     "scaleX": 1.03,
                     "scaleY": 1.03
@@ -129,11 +129,14 @@
                     "type": "Image",
                     "id": "a8c64c59-d95a-4520-915a-68e7b41cd95d",
                     "label": "innerBar",
+                    "scope": "CLASS",
                     "texture": {
                         "key": "innerBar"
                     },
-                    "x": 165,
-                    "y": 283
+                    "x": 29,
+                    "y": 283,
+                    "scaleX": 0,
+                    "originX": 0
                 },
                 {
                     "type": "Image",
@@ -168,7 +171,7 @@
                     "y": 117,
                     "originX": 0.5,
                     "originY": 0.5,
-                    "text": "Leval : 1",
+                    "text": "Level : 1",
                     "fontFamily": "Allerta",
                     "fontSize": "50px"
                 }
@@ -279,6 +282,180 @@
                     "scaleX": 2,
                     "scaleY": 2,
                     "angle": 45
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "id": "186c916b-29e7-42f7-bb6a-4870edc16546",
+            "label": "container_level_failed",
+            "scope": "CLASS",
+            "visible": false,
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "203742ad-002f-46ae-b3d6-3403223a0a58",
+                    "label": "level_failed_popup",
+                    "texture": {
+                        "key": "Level-failed-popup"
+                    },
+                    "x": 703,
+                    "y": 266,
+                    "scaleX": 0.8,
+                    "scaleY": 0.8
+                },
+                {
+                    "type": "Text",
+                    "id": "2806a672-0c6e-47bb-8aac-fa207ff9d8e6",
+                    "label": "failed_score_txt",
+                    "scope": "CLASS",
+                    "x": 699,
+                    "y": 444,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "SCORE : 50",
+                    "fontFamily": "Allerta",
+                    "fontSize": "40px"
+                },
+                {
+                    "type": "Text",
+                    "id": "7346c36b-d583-4a0c-ab76-195e01547093",
+                    "label": "failed_level_txt",
+                    "scope": "CLASS",
+                    "x": 702,
+                    "y": 246,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "Level: 01",
+                    "fontFamily": "Allerta",
+                    "fontSize": "30px"
+                },
+                {
+                    "type": "Image",
+                    "id": "6240d574-27d4-467f-9eda-2e66edaf7a02",
+                    "label": "replay_btn_failed",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "replay-btn"
+                    },
+                    "x": 697,
+                    "y": 538
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "id": "5ac15088-f9bb-4ff0-bc72-65f3f8d93277",
+            "label": "container_winner",
+            "scope": "CLASS",
+            "visible": false,
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "7e553537-6b7b-48d4-8e02-82451d28dd61",
+                    "label": "level_complete_popup",
+                    "texture": {
+                        "key": "level-complete-popup"
+                    },
+                    "x": 703,
+                    "y": 266,
+                    "scaleX": 0.8,
+                    "scaleY": 0.8
+                },
+                {
+                    "type": "Image",
+                    "id": "8924fe70-f442-4e10-81e5-87133af8d29d",
+                    "label": "play_btn",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Play-btn"
+                    },
+                    "x": 849,
+                    "y": 530
+                },
+                {
+                    "type": "Image",
+                    "id": "30cb7232-6e7e-46ac-9177-00c10322075b",
+                    "label": "replay_btn",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "replay-btn"
+                    },
+                    "x": 556,
+                    "y": 530
+                },
+                {
+                    "type": "Image",
+                    "id": "39165d25-0c10-411b-ac37-f9f5a3004ff1",
+                    "label": "home_btn",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Home-btn"
+                    },
+                    "x": 702,
+                    "y": 530
+                },
+                {
+                    "type": "Text",
+                    "id": "765ff72c-71d5-423a-a7ef-459d2e80853b",
+                    "label": "winning_score_txt",
+                    "scope": "CLASS",
+                    "x": 701,
+                    "y": 445,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "SCORE : 50",
+                    "fontFamily": "Allerta",
+                    "fontSize": "40px"
+                },
+                {
+                    "type": "Text",
+                    "id": "9c1e4a8a-87c9-42f3-beb3-1728bd8836fe",
+                    "label": "winning_level_txt",
+                    "scope": "CLASS",
+                    "x": 701,
+                    "y": 247,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "Level: 01",
+                    "fontFamily": "Allerta",
+                    "fontSize": "30px"
+                },
+                {
+                    "type": "Image",
+                    "id": "cd2ce933-2f57-49d2-a2dd-0c8d20163aef",
+                    "label": "glowing_star_3",
+                    "texture": {
+                        "key": "Glowing-star"
+                    },
+                    "x": 804,
+                    "y": 351,
+                    "scaleX": 0.5,
+                    "scaleY": 0.5
+                },
+                {
+                    "type": "Image",
+                    "id": "7c762515-2311-4b3f-ab78-709e3d2a5c9c",
+                    "label": "glowing_star_2",
+                    "texture": {
+                        "key": "Glowing-star"
+                    },
+                    "x": 699,
+                    "y": 333,
+                    "scaleX": 0.72,
+                    "scaleY": 0.72
+                },
+                {
+                    "type": "Image",
+                    "id": "2f13feed-421e-40e0-aa4f-fc9bb013b107",
+                    "label": "glowing_star_1",
+                    "texture": {
+                        "key": "Glowing-star"
+                    },
+                    "x": 594,
+                    "y": 351,
+                    "scaleX": 0.5,
+                    "scaleY": 0.5
                 }
             ]
         }
