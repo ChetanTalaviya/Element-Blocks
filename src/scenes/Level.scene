@@ -77,7 +77,7 @@
                 {
                     "type": "Image",
                     "id": "78afb2da-2357-4708-9399-99ba5c0fe85e",
-                    "label": "btn_pls_diamond",
+                    "label": "btn_pls_hammer",
                     "scope": "CLASS",
                     "texture": {
                         "key": "btn_pls"
@@ -185,48 +185,31 @@
             "visible": false,
             "list": [
                 {
-                    "type": "Rectangle",
-                    "id": "07ec9e76-8b18-4770-bcab-2fe47fce4442",
-                    "label": "rectangle_2",
-                    "x": 640,
-                    "y": 360,
-                    "scaleX": 10.066541849013248,
-                    "scaleY": 5.807530997091754,
-                    "isFilled": true,
-                    "fillColor": "#000000",
-                    "fillAlpha": 0.8,
-                    "width": 128,
-                    "height": 128
+                    "type": "Image",
+                    "id": "aa58c27c-7f90-4c23-9154-ea9fd65d67fb",
+                    "label": "glow",
+                    "texture": {
+                        "key": "Glow"
+                    },
+                    "x": 629,
+                    "y": 179
                 },
                 {
                     "type": "Image",
                     "id": "ec1a44c2-6fbf-495a-8a80-ba4b952d9d39",
                     "label": "back_star",
                     "texture": {
-                        "key": "back-star"
+                        "key": "brown-box"
                     },
                     "x": 640,
-                    "y": 360
-                },
-                {
-                    "type": "Image",
-                    "id": "8a1e918e-d250-4283-83e0-f075eff97960",
-                    "label": "bom_btn",
-                    "scope": "CLASS",
-                    "texture": {
-                        "key": "bomb"
-                    },
-                    "x": 565,
-                    "y": 359,
-                    "scaleX": 0.55,
-                    "scaleY": 0.55
+                    "y": 470
                 },
                 {
                     "type": "Text",
                     "id": "9ab677ce-14c3-4940-92a7-04dd0ae34c5b",
                     "label": "text_1",
-                    "x": 633,
-                    "y": 362,
+                    "x": 640,
+                    "y": 472,
                     "originX": 0.5,
                     "originY": 0.5,
                     "text": "10",
@@ -240,10 +223,10 @@
                     "texture": {
                         "key": "star"
                     },
-                    "x": 683,
-                    "y": 359,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5
+                    "x": 534,
+                    "y": 467,
+                    "scaleX": 1.3,
+                    "scaleY": 1.3
                 },
                 {
                     "type": "Image",
@@ -251,10 +234,10 @@
                     "label": "bnt_lock_bom",
                     "scope": "CLASS",
                     "texture": {
-                        "key": "bnt_lock"
+                        "key": "shop-button"
                     },
-                    "x": 771,
-                    "y": 360
+                    "x": 723,
+                    "y": 472
                 },
                 {
                     "type": "Text",
@@ -265,6 +248,7 @@
                     "y": 169,
                     "originX": 0.5,
                     "originY": 0.5,
+                    "visible": false,
                     "text": "0",
                     "fontFamily": "Allerta",
                     "fontSize": "50px"
@@ -282,6 +266,19 @@
                     "scaleX": 2,
                     "scaleY": 2,
                     "angle": 45
+                },
+                {
+                    "type": "Image",
+                    "id": "74d041da-1066-4ef0-bb52-2b4b76ef3a81",
+                    "label": "bom_btn",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Hammer-big"
+                    },
+                    "x": 643,
+                    "y": 230,
+                    "scaleX": 0.65,
+                    "scaleY": 0.65
                 }
             ]
         },
@@ -458,6 +455,40 @@
                     "scaleY": 0.5
                 }
             ]
+        },
+        {
+            "type": "Image",
+            "id": "41e8d6fa-ea79-41f4-a027-9a70e2aaadc4",
+            "label": "s_green",
+            "texture": {
+                "key": "s-green"
+            },
+            "x": 1176,
+            "y": 384,
+            "scaleX": 0.6,
+            "scaleY": 0.6
+        },
+        {
+            "type": "Image",
+            "id": "1caef30b-7d0a-45a6-a9cf-adc5507cbf4f",
+            "label": "innerBar_1",
+            "texture": {
+                "key": "innerBar"
+            },
+            "x": 1188,
+            "y": 450,
+            "scaleY": 0.2
+        },
+        {
+            "type": "Image",
+            "id": "df2af817-d48e-40b2-989d-8337366aacce",
+            "label": "innerBar_2",
+            "texture": {
+                "key": "innerBar"
+            },
+            "x": 1181,
+            "y": 250,
+            "scaleY": 0.2
         }
     ],
     "plainObjects": [],

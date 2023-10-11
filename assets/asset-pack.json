@@ -7,19 +7,9 @@
                 "key": "animations"
             },
             {
-                "url": "assets/back.png",
-                "type": "image",
-                "key": "back"
-            },
-            {
                 "url": "assets/image/block/back-Box.png",
                 "type": "image",
                 "key": "back-Box"
-            },
-            {
-                "url": "assets/back-star.png",
-                "type": "image",
-                "key": "back-star"
             },
             {
                 "url": "assets/image/background/background.png",
@@ -67,11 +57,6 @@
                 "key": "Blocks"
             },
             {
-                "url": "assets/bnt_lock.png",
-                "type": "image",
-                "key": "bnt_lock"
-            },
-            {
                 "url": "src/Prefab/Bom.js",
                 "type": "script",
                 "key": "Bom"
@@ -95,6 +80,11 @@
                 "key": "bomb"
             },
             {
+                "url": "assets/image/background/brown-box.png",
+                "type": "image",
+                "key": "brown-box"
+            },
+            {
                 "url": "assets/btn_pls.png",
                 "type": "image",
                 "key": "btn_pls"
@@ -105,14 +95,14 @@
                 "key": "btn_right"
             },
             {
-                "url": "src/Prefab/Diamond.js",
-                "type": "script",
-                "key": "Diamond"
-            },
-            {
                 "url": "assets/dino.png",
                 "key": "dino",
                 "type": "image"
+            },
+            {
+                "url": "assets/image/background/Glow.png",
+                "type": "image",
+                "key": "Glow"
             },
             {
                 "url": "assets/image/winning-Screen/Glow-for-star.png",
@@ -125,8 +115,13 @@
                 "key": "Glowing-star"
             },
             {
-                "url": "assets/image/background/Hammer.png",
+                "url": "assets/image/background/hammer.png",
                 "type": "image",
+                "key": "hammer"
+            },
+            {
+                "url": "src/Prefab/Hammer.js",
+                "type": "script",
                 "key": "Hammer"
             },
             {
@@ -193,6 +188,11 @@
                 "url": "assets/image/block/s-yellow.png",
                 "type": "image",
                 "key": "s-yellow"
+            },
+            {
+                "url": "assets/image/background/shop-button.png",
+                "type": "image",
+                "key": "shop-button"
             },
             {
                 "url": "assets/image/background/side-box.png",

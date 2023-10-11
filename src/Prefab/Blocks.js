@@ -34,15 +34,17 @@ class Blocks extends Phaser.GameObjects.Container {
 		this.isDragged = true;
 		this.setSize(
 			80 * Math.abs(this.name.x) + 80,
-			80 * Math.abs(this.name.y) + 80
+			(80 * Math.abs(this.name.y) + 80)
 		);
+		console.log(this);
+		console.log(80 * Math.abs(this.name.x) + 80, (80 * Math.abs(this.name.y) + 80));
 
 		this.setInteractive();
 		this.oScene.input.setDraggable(this);
 		var self = this;
 
 		this.lastPosX = this.x + this.nPosition.x;
-		this.lastPosY = this.y+ this.nPosition.y;
+		this.lastPosY = this.y + this.nPosition.y;
 		this.isLastXY = null;
 		this.aMatchingBox = [];
 		this.aFinalMatchingImage = [];
@@ -345,7 +347,7 @@ class Blocks extends Phaser.GameObjects.Container {
 						// this.color
 						this.oScene.AllImageObj[i][k].isStar ? this.oScene.AllImageObj[i][k].sprite.texture.key : this.color
 					);
-					if(this.oScene.AllImageObj[i][k].isStar){
+					if (this.oScene.AllImageObj[i][k].isStar) {
 						// console.log(k,i,this.oScene.AllImageObj[i][k].sprite.texture.key);
 
 					}
@@ -358,7 +360,7 @@ class Blocks extends Phaser.GameObjects.Container {
 						this.oScene.AllImageObj[i][k].sprite.isStar ? this.oScene.AllImageObj[i][k].sprite.texture.key : this.color
 
 					);
-					if(this.oScene.AllImageObj[k][i].isStar){
+					if (this.oScene.AllImageObj[k][i].isStar) {
 						// console.log(i,k,this.oScene.AllImageObj[k][i].sprite.texture.key);
 
 					}
@@ -470,7 +472,7 @@ class Blocks extends Phaser.GameObjects.Container {
 
 	response() {
 		const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
-		// const i = 12;
+		// const i = 4;
 		this.allImage = [];
 		const dis_X = 45;
 		const dis_Y = 45;
@@ -479,7 +481,7 @@ class Blocks extends Phaser.GameObjects.Container {
 		let randomImageLength = Math.floor(Math.random() * aAllImage.length)
 		const randomImage = aAllImage[randomImageLength];
 		const randomImagewithStar = aAllImagewithStar[randomImageLength];
-		this.nPosition = { x: 0, y: 0}
+		this.nPosition = { x: 0, y: 0 }
 		const addImage = (x, y, imgs) => {
 			const img = this.oScene.add.image(x, y, imgs);
 			this.allImage.push({ img: img, color: imgs });
@@ -492,18 +494,18 @@ class Blocks extends Phaser.GameObjects.Container {
 				this.isStarImage = { isStar: false };
 			}
 		};
- 		switch (i) {
+		switch (i) {
 			case 0:
 				addImage(0, 0, randomImage);
 				this.name = { x: 0, y: 0 };
- 				break;
+				break;
 
 			case 1:
 				for (let index = 0; index <= 2; index++) {
-					addImage(-index * dis_X , 0, randomImage);
+					addImage(-index * dis_X, 0, randomImage);
 				}
 				this.name = { x: -2, y: 0 };
-				this.nPosition = { x:45, y: 0}
+				this.nPosition = { x: 45, y: 0 }
 
 				break;
 			case 2:
@@ -515,45 +517,45 @@ class Blocks extends Phaser.GameObjects.Container {
 
 			case 3:
 				for (let index = 0; index <= 2; index++) {
-					addImage(index * dis_X , 0, randomImage);
+					addImage(index * dis_X, 0, randomImage);
 				}
 				this.name = { x: 2, y: 0 };
-				this.nPosition = { x:-50, y: 0}
+				this.nPosition = { x: -50, y: 0 }
 				break;
 			case 4:
 				for (let index = 0; index <= 3; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
 				this.name = { x: 0, y: 3 };
-				this.nPosition = { x:0, y: -57}
+				this.nPosition = { x: 0, y: -57 }
 
 				break;
 			case 5:
 				for (let index = 0; index <= 2; index++) {
-					addImage(0, -index * dis_Y , randomImage);
+					addImage(0, -index * dis_Y, randomImage);
 				}
 				this.name = { x: 0, y: -2 };
-				this.nPosition = { x:0, y: 50}
-				
+				this.nPosition = { x: 0, y: 50 }
+
 				break;
 			case 6:
-				addImage(-dis_X , 0, randomImagewithStar);
-				addImage(-dis_X * 2 , 0, randomImage);
+				addImage(-dis_X, 0, randomImagewithStar);
+				addImage(-dis_X * 2, 0, randomImage);
 				for (let index = 0; index <= 2; index++) {
 					addImage(0, index * dis_Y, randomImage);
 				}
 				this.name = { x: -2, y: 2 };
-				this.nPosition = { x:45, y: -20}
+				this.nPosition = { x: 45, y: -20 }
 
 				break;
 			case 7:
 				for (let index = 0; index <= 2; index++) {
 					addImage(0, -index * dis_Y, randomImage);
 				}
-				addImage(dis_X , 0, randomImage);
-				addImage(dis_X * 2 , 0, randomImage);
+				addImage(dis_X, 0, randomImage);
+				addImage(dis_X * 2, 0, randomImage);
 				this.name = { x: 2, y: -2 };
-				this.nPosition = { x:-45, y: 40}
+				this.nPosition = { x: -45, y: 40 }
 
 				break;
 			case 8:
@@ -563,7 +565,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				addImage(-dis_X, 0, randomImage);
 				addImage(-dis_X * 2, 0, randomImage);
 				this.name = { x: -2, y: -2 };
-				this.nPosition = { x:45, y: 40}
+				this.nPosition = { x: 45, y: 40 }
 
 				break;
 			case 9:
@@ -588,7 +590,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				addImage(0, 90, randomImage);
 				addImage(dis_X, 0, randomImage);
 				this.name = { x: 2, y: 2 };
-				this.nPosition = { x:-45, y: -20}
+				this.nPosition = { x: -45, y: -20 }
 
 				break;
 			case 12:
@@ -597,7 +599,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				addImage(0, 45, randomImage);
 				addImage(dis_X, 0, randomImage);
 				this.name = { x: 1, y: 1, z: 1 };
-				this.nPosition = { x:-20, y: -20}
+				this.nPosition = { x: -20, y: -20 }
 
 				break;
 		}
@@ -793,7 +795,7 @@ class Blocks extends Phaser.GameObjects.Container {
 							this.oScene.AllImageObj[matchValue.DrconNmbr][index].sprite.y
 						);
 						if (this.oScene.AllImageObj[matchValue.DrconNmbr][index].isStar) {
- 							this.oScene.oUiManager.setScoreProgressBar(index, matchValue.DrconNmbr);
+							this.oScene.oUiManager.setScoreProgressBar(index, matchValue.DrconNmbr);
 
 						}
 					} else {
@@ -806,7 +808,7 @@ class Blocks extends Phaser.GameObjects.Container {
 							this.oScene.AllImageObj[index][matchValue.DrconNmbr].sprite.y
 						);
 						if (this.oScene.AllImageObj[index][matchValue.DrconNmbr].isStar) {
- 							this.oScene.oUiManager.setScoreProgressBar(matchValue.DrconNmbr, index);
+							this.oScene.oUiManager.setScoreProgressBar(matchValue.DrconNmbr, index);
 
 
 						}
@@ -815,7 +817,7 @@ class Blocks extends Phaser.GameObjects.Container {
 			}
 		}
 	}
-	 
+
 	matchInBoard() {
 		const result = [];
 		for (let i = 0; i <= 7; i++) {

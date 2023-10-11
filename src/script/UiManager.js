@@ -3,11 +3,11 @@ class UiManager {
         this.oSceneObj = oSceneObj;
         const self = this;
 
-        this.diamond = new Diamond(this.oSceneObj, 117, 536);
-        this.bom = new Bom(this.oSceneObj, 120, 642);
+        this.oHammer = new Hammer(this.oSceneObj,  117, 536);
+         this.bom = new Bom(this.oSceneObj, 120, 642);
 
         this.oSceneObj.side_cont.add(this.bom)
-        this.oSceneObj.side_cont.add(this.diamond)
+        this.oSceneObj.side_cont.add(this.oHammer)
 
     }
 

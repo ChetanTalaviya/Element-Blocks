@@ -17,8 +17,8 @@
             "texture": {
                 "key": "bomb"
             },
-            "scaleX": 0.5,
-            "scaleY": 0.5
+            "scaleX": 0.19,
+            "scaleY": 0.19
         }
     ],
     "plainObjects": [],

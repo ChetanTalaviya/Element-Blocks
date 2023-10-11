@@ -1,5 +1,5 @@
 {
-    "id": "b616ed5c-1793-4ac6-9c0e-283fd7cecd70",
+    "id": "79242d4a-8b2c-49b7-bdaa-5a1c4a07985e",
     "sceneType": "PREFAB",
     "settings": {
         "preloadMethodName": "",
@@ -11,14 +11,13 @@
     "displayList": [
         {
             "type": "Image",
-            "id": "d5f15ee2-edc8-4b6c-93b9-398cdf644e94",
-            "label": "diamond",
-            "scope": "CLASS",
+            "id": "e1e48a7e-2ce2-457d-a5f8-9389b95d76c2",
+            "label": "hammer_big_1",
             "texture": {
-                "key": "Hammer"
+                "key": "hammer"
             },
-            "scaleX": 0.5,
-            "scaleY": 0.5
+            "scaleX": 0.17,
+            "scaleY": 0.17
         }
     ],
     "plainObjects": [],

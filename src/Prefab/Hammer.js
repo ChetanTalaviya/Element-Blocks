@@ -3,20 +3,19 @@
 
 /* START OF COMPILED CODE */
 
-class Diamond extends Phaser.GameObjects.Image {
+class Hammer extends Phaser.GameObjects.Image {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "Hammer", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "hammer", frame);
 
-		this.scaleX = 0.5;
-		this.scaleY = 0.5;
+		this.scaleX = 0.17;
+		this.scaleY = 0.17;
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
 		this.oScene = scene;
 		this.oScene.add.existing(this);
 		this.setDrageble();
-
 		/* END-USER-CTR-CODE */
 	}
 
@@ -27,19 +26,19 @@ class Diamond extends Phaser.GameObjects.Image {
 		this.setSize(172, 175);
 		this.setInteractive();
 
- 		this.oScene.input.setDraggable(this);
+		this.oScene.input.setDraggable(this);
 		this.lastPosX = this.x;
 		this.lastPosY = this.y;
 		const self = this;
 		this.lastRowAndCol = null
 
-		this.on("pointerdown", () => { this.oScene.bIDiamondDrag ? this.setScale(0.75) : null }, self);
+		this.on("pointerdown", () => { this.oScene.bIDiamondDrag ? this.setScale(0.5) : null }, self);
 
 		this.oScene.input.on("drag", function (pointer, gameObj, dragX, dragY) {
 			if (gameObj === self && this.oScene.bIDiamondDrag) {
 				gameObj.x = dragX;
 				gameObj.y = dragY;
-				gameObj.setScale(0.75);
+				gameObj.setScale(0.5);
 				self.matchImage(gameObj);
 			}
 		}, this);
@@ -51,7 +50,7 @@ class Diamond extends Phaser.GameObjects.Image {
 				} else {
 					this.setAlphavalues(1);
 				}
-				this.setScale(0.35);
+				this.setScale(0.17);
 				gameObj.x = this.lastPosX;
 				gameObj.y = this.lastPosY;
 
@@ -103,16 +102,17 @@ class Diamond extends Phaser.GameObjects.Image {
 
 		for (let index_col = 0; index_col < 8; index_col++) {
 			for (let index_row = 0; index_row < 8; index_row++) {
-				if (color === this.oScene.AllImageObj[index_col][index_row].sprite.texture.key)
+				if (color === this.oScene.AllImageObj[index_col][index_row].sprite.texture.key) {
 					this.oScene.AllImageObj[index_col][index_row].sprite.setTexture("back-Box");
-				this.oScene.removeArray[index_row][index_col] = 0;
-
+					this.oScene.removeArray[index_row][index_col] = 0;
+					this.matchAnimation(this.oScene.AllImageObj[index_col][index_row].sprite.x, this.oScene.AllImageObj[index_col][index_row].sprite.y, color)
+ 				}
 			}
 		}
 		this.setAlphavalues(1);
 		this.lastRowAndCol = null;
 		this.oScene.bIDiamondDrag = false;
-		this.oScene.btn_pls_diamond.setTexture("btn_pls")
+		this.oScene.btn_pls_hammer.setTexture("btn_pls")
 
 	}
 
@@ -123,6 +123,19 @@ class Diamond extends Phaser.GameObjects.Image {
 				this.oScene.AllImageObj[index_col][index_row].sprite.alpha = alphaValue;
 			}
 		}
+	}
+	matchAnimation(x, y, imgName) {
+		const emitter = this.oScene.add.particles(x, y, imgName, {
+			speed: { min: 100, max: 200 },
+			scale: 0.3,
+			lifespan: 200,
+			frequency: 6,
+			gravityY: 1000,
+		});
+		setTimeout(() => {
+			emitter.stop();
+		}, 100);
+
 	}
 
 	/* END-USER-CODE */
