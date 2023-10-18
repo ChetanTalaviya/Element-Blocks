@@ -362,7 +362,7 @@ class Level extends Phaser.Scene {
 			{ nMaxScore: 100 },
 			];
 		this.nCurruntLeval = Math.min(this.oLevalData.length - 1, JSON.parse(localStorage.getItem("nCurruntLeval") == null ? 0 : localStorage.getItem("nCurruntLeval")));
-		this.text_leval.setText(`Level : ${this.nCurruntLeval + 1}`);
+		this.text_leval.setText(`Level : ${this.nCurruntLeval === 0 ? 1 : this.nCurruntLeval}`);
 		this.nCurruntLevalData = this.oLevalData[Math.min(this.oLevalData.length - 1, this.nCurruntLeval)];
 
 		this.AllImageObj = [];
