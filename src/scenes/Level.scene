@@ -22,8 +22,8 @@
                     "texture": {
                         "key": "background-Box"
                     },
-                    "x": 691,
-                    "y": 363,
+                    "x": 690,
+                    "y": 362,
                     "scaleX": 1.03,
                     "scaleY": 1.03
                 }
@@ -50,16 +50,17 @@
                 },
                 {
                     "type": "Image",
-                    "id": "03d2a903-ae88-427e-a299-2806b9e81fbc",
-                    "label": "back_diamond",
-                    "scope": "METHOD",
+                    "id": "13e3352a-082c-4748-81ca-5ae00f8adb79",
+                    "label": "timer_hammer",
+                    "scope": "CLASS",
                     "texture": {
-                        "key": "hammer-box"
+                        "key": "timer"
                     },
-                    "x": 117,
-                    "y": 535,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5
+                    "x": 121,
+                    "y": 641,
+                    "scaleX": 0.6,
+                    "scaleY": 0.6,
+                    "visible": false
                 },
                 {
                     "type": "Image",
@@ -73,6 +74,33 @@
                     "y": 608,
                     "scaleX": 1.5,
                     "scaleY": 1.5
+                },
+                {
+                    "type": "Image",
+                    "id": "03d2a903-ae88-427e-a299-2806b9e81fbc",
+                    "label": "back_hammer",
+                    "scope": "METHOD",
+                    "texture": {
+                        "key": "hammer-box"
+                    },
+                    "x": 117,
+                    "y": 535,
+                    "scaleX": 0.5,
+                    "scaleY": 0.5
+                },
+                {
+                    "type": "Image",
+                    "id": "e1f37547-4795-44d3-90ab-7e104466110d",
+                    "label": "timer_bom",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "timer"
+                    },
+                    "x": 117,
+                    "y": 535,
+                    "scaleX": 0.6,
+                    "scaleY": 0.6,
+                    "visible": false
                 },
                 {
                     "type": "Image",
@@ -120,7 +148,7 @@
                     "id": "c5e999e9-97eb-4fd9-9b28-78af7de5cee8",
                     "label": "outerBar",
                     "texture": {
-                        "key": "outerBar"
+                        "key": "outerBar-level"
                     },
                     "x": 165,
                     "y": 283
@@ -131,17 +159,17 @@
                     "label": "innerBar",
                     "scope": "CLASS",
                     "texture": {
-                        "key": "innerBar"
+                        "key": "innerBar-level"
                     },
                     "x": 29,
-                    "y": 283,
+                    "y": 284,
                     "scaleX": 0,
                     "originX": 0
                 },
                 {
                     "type": "Image",
                     "id": "92979248-0331-4123-864f-c0c43646f1b6",
-                    "label": "stars",
+                    "label": "stars_img",
                     "scope": "CLASS",
                     "texture": {
                         "key": "star"
@@ -188,11 +216,17 @@
                     "type": "Image",
                     "id": "aa58c27c-7f90-4c23-9154-ea9fd65d67fb",
                     "label": "glow",
+                    "scope": "CLASS",
                     "texture": {
                         "key": "Glow"
                     },
                     "x": 629,
-                    "y": 179
+                    "y": 179,
+                    "alpha": 0.5,
+                    "alphaTopLeft": 0.5,
+                    "alphaTopRight": 0.5,
+                    "alphaBottomLeft": 0.5,
+                    "alphaBottomRight": 0.5
                 },
                 {
                     "type": "Image",
@@ -273,7 +307,7 @@
                     "label": "bom_btn",
                     "scope": "CLASS",
                     "texture": {
-                        "key": "Hammer-big"
+                        "key": "bomb"
                     },
                     "x": 643,
                     "y": 230,
@@ -411,7 +445,7 @@
                     "label": "winning_level_txt",
                     "scope": "CLASS",
                     "x": 701,
-                    "y": 247,
+                    "y": 242,
                     "originX": 0.5,
                     "originY": 0.5,
                     "text": "Level: 01",
@@ -419,76 +453,53 @@
                     "fontSize": "30px"
                 },
                 {
-                    "type": "Image",
-                    "id": "cd2ce933-2f57-49d2-a2dd-0c8d20163aef",
-                    "label": "glowing_star_3",
-                    "texture": {
-                        "key": "Glowing-star"
-                    },
-                    "x": 804,
-                    "y": 351,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5
-                },
-                {
-                    "type": "Image",
-                    "id": "7c762515-2311-4b3f-ab78-709e3d2a5c9c",
-                    "label": "glowing_star_2",
-                    "texture": {
-                        "key": "Glowing-star"
-                    },
-                    "x": 699,
-                    "y": 333,
-                    "scaleX": 0.72,
-                    "scaleY": 0.72
-                },
-                {
-                    "type": "Image",
-                    "id": "2f13feed-421e-40e0-aa4f-fc9bb013b107",
-                    "label": "glowing_star_1",
-                    "texture": {
-                        "key": "Glowing-star"
-                    },
+                    "type": "Container",
+                    "id": "4f23e93c-6ac7-4dfc-a82b-24fd32198f51",
+                    "label": "container_stars",
+                    "scope": "CLASS",
                     "x": 594,
-                    "y": 351,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5
+                    "y": 333,
+                    "list": [
+                        {
+                            "type": "Image",
+                            "id": "2f13feed-421e-40e0-aa4f-fc9bb013b107",
+                            "label": "glowing_star_1",
+                            "texture": {
+                                "key": "Glowing-star"
+                            },
+                            "y": 18,
+                            "scaleX": 0.5,
+                            "scaleY": 0.5,
+                            "visible": false
+                        },
+                        {
+                            "type": "Image",
+                            "id": "7c762515-2311-4b3f-ab78-709e3d2a5c9c",
+                            "label": "glowing_star_2",
+                            "texture": {
+                                "key": "Glowing-star"
+                            },
+                            "x": 105,
+                            "scaleX": 0.72,
+                            "scaleY": 0.72,
+                            "visible": false
+                        },
+                        {
+                            "type": "Image",
+                            "id": "cd2ce933-2f57-49d2-a2dd-0c8d20163aef",
+                            "label": "glowing_star_3",
+                            "texture": {
+                                "key": "Glowing-star"
+                            },
+                            "x": 210,
+                            "y": 18,
+                            "scaleX": 0.5,
+                            "scaleY": 0.5,
+                            "visible": false
+                        }
+                    ]
                 }
             ]
-        },
-        {
-            "type": "Image",
-            "id": "41e8d6fa-ea79-41f4-a027-9a70e2aaadc4",
-            "label": "s_green",
-            "texture": {
-                "key": "s-green"
-            },
-            "x": 1176,
-            "y": 384,
-            "scaleX": 0.6,
-            "scaleY": 0.6
-        },
-        {
-            "type": "Image",
-            "id": "1caef30b-7d0a-45a6-a9cf-adc5507cbf4f",
-            "label": "innerBar_1",
-            "texture": {
-                "key": "innerBar"
-            },
-            "x": 1188,
-            "y": 450,
-            "scaleY": 0.2
-        },
-        {
-            "type": "Image",
-            "id": "df2af817-d48e-40b2-989d-8337366aacce",
-            "label": "innerBar_2",
-            "texture": {
-                "key": "innerBar"
-            },
-            "x": 1181,
-            "y": 250,
-            "scaleY": 0.2
         }
     ],
     "plainObjects": [],

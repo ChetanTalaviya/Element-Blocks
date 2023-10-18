@@ -8,7 +8,7 @@
 
 	<title>Element-Blocks</title>
 	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
- 
+
 	<script src="lib/phaser.min.js"></script>
 	<script src="src/components/UserComponent.js"></script>
 	<script src="src/script-nodes-basic-js/ScriptNode.js"></script>
@@ -27,17 +27,47 @@
 			background: url('assets/image/background/background.png')no-repeat center center/cover;
 			margin: 0;
 			padding: 0;
+			position: relative;
 		}
+
 		@font-face {
 			font-family: Allerta;
 			src: url('assets/font/junegull.ttf');
 		}
 
+		body.active .overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		body.active .overlay:after {
+			position: absolute;
+			top: 0;
+			left: calc(50% + 249px);
+			background: rgba(0, 0, 0, 0.3);
+			content: '';
+			width: 50vw;
+			height: 100vh
+		}
+
+		body.active .overlay:before {
+			position: absolute;
+			top: 0;
+			right: calc(50% + 249px);
+			background: rgba(0, 0, 0, 0.3);
+			content: '';
+			width: 50vw;
+			height: 100vh
+		}
 	</style>
 
 </head>
 
 <body>
+	<div class="overlay"></div>
 </body>
 
 </html>

@@ -32,26 +32,30 @@ class Bom extends Phaser.GameObjects.Sprite {
 		const self = this;
 		this.lastRowAndCol = null
 
- 		this.on("pointerdown", () => { this.oScene.bIBomDrag ? this.setScale(0.75) : null }, self);
+ 		this.on("pointerdown", () => { this.oScene.bIBomDrag ? this.setScale(0.35) : null }, self);
 
 		this.oScene.input.on("drag", function (pointer, gameObj, dragX, dragY) {
 			if (gameObj === self && this.oScene.bIBomDrag) {
 				gameObj.x = dragX;
 				gameObj.y = dragY;
-				gameObj.setScale(0.75);
+				gameObj.setScale(0.35);
 				self.matchImage(gameObj);
+				this.oScene.isPaused = true
+
 			}
 		}, this);
 
 		this.oScene.input.on("dragend", function (pointer, gameObj) {
 			if (gameObj === self && this.oScene.bIBomDrag) {
 				if (this.lastRowAndCol !== null) {
-					this.setFinalbombblast()
+					this.setFinalbombblast();
+					this.oScene.isPaused = false
+
 				} else {
 					this.setAlphavalues(1);
 				}
 
-				this.setScale(0.35);
+				this.setScale(0.17);
 				gameObj.x = this.lastPosX;
 				gameObj.y = this.lastPosY;
 
@@ -115,7 +119,9 @@ class Bom extends Phaser.GameObjects.Sprite {
 		this.setAlphavalues(1);
 		this.lastRowAndCol = null;
 		this.oScene.bIBomDrag = false;
-		this.oScene.btn_pls_bom.setTexture("btn_pls")
+		this.oScene.btn_pls_bom.setTexture("btn_pls");
+		this.oScene.setISCurruntPosible()
+
 
 	}	
 

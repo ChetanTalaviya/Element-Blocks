@@ -20,7 +20,7 @@ class Level extends Phaser.Scene {
 		const back_block_Cont = this.add.container(0, 0);
 
 		// background_Box
-		const background_Box = this.add.image(691, 363, "background-Box");
+		const background_Box = this.add.image(690, 362, "background-Box");
 		background_Box.scaleX = 1.03;
 		background_Box.scaleY = 1.03;
 		back_block_Cont.add(background_Box);
@@ -34,17 +34,31 @@ class Level extends Phaser.Scene {
 		back_bom.scaleY = 0.5;
 		side_cont.add(back_bom);
 
-		// back_diamond
-		const back_diamond = this.add.image(117, 535, "hammer-box");
-		back_diamond.scaleX = 0.5;
-		back_diamond.scaleY = 0.5;
-		side_cont.add(back_diamond);
+		// timer_hammer
+		const timer_hammer = this.add.image(121, 641, "timer");
+		timer_hammer.scaleX = 0.6;
+		timer_hammer.scaleY = 0.6;
+		timer_hammer.visible = false;
+		side_cont.add(timer_hammer);
 
 		// btn_pls_bom
 		const btn_pls_bom = this.add.image(156, 608, "btn_pls");
 		btn_pls_bom.scaleX = 1.5;
 		btn_pls_bom.scaleY = 1.5;
 		side_cont.add(btn_pls_bom);
+
+		// back_hammer
+		const back_hammer = this.add.image(117, 535, "hammer-box");
+		back_hammer.scaleX = 0.5;
+		back_hammer.scaleY = 0.5;
+		side_cont.add(back_hammer);
+
+		// timer_bom
+		const timer_bom = this.add.image(117, 535, "timer");
+		timer_bom.scaleX = 0.6;
+		timer_bom.scaleY = 0.6;
+		timer_bom.visible = false;
+		side_cont.add(timer_bom);
 
 		// btn_pls_hammer
 		const btn_pls_hammer = this.add.image(153, 502, "btn_pls");
@@ -65,18 +79,18 @@ class Level extends Phaser.Scene {
 		const container_star = this.add.container(0, 0);
 
 		// outerBar
-		const outerBar = this.add.image(165, 283, "outerBar");
+		const outerBar = this.add.image(165, 283, "outerBar-level");
 		container_star.add(outerBar);
 
 		// innerBar
-		const innerBar = this.add.image(29, 283, "innerBar");
+		const innerBar = this.add.image(29, 284, "innerBar-level");
 		innerBar.scaleX = 0;
 		innerBar.setOrigin(0, 0.5);
 		container_star.add(innerBar);
 
-		// stars
-		const stars = this.add.image(54, 281, "star");
-		container_star.add(stars);
+		// stars_img
+		const stars_img = this.add.image(54, 281, "star");
+		container_star.add(stars_img);
 
 		// text_star
 		const text_star = this.add.text(174, 211, "", {});
@@ -98,6 +112,11 @@ class Level extends Phaser.Scene {
 
 		// glow
 		const glow = this.add.image(629, 179, "Glow");
+		glow.alpha = 0.5;
+		glow.alphaTopLeft = 0.5;
+		glow.alphaTopRight = 0.5;
+		glow.alphaBottomLeft = 0.5;
+		glow.alphaBottomRight = 0.5;
 		container_by_bom.add(glow);
 
 		// back_star
@@ -137,7 +156,7 @@ class Level extends Phaser.Scene {
 		container_by_bom.add(btn_close);
 
 		// bom_btn
-		const bom_btn = this.add.image(643, 230, "Hammer-big");
+		const bom_btn = this.add.image(643, 230, "bomb");
 		bom_btn.scaleX = 0.65;
 		bom_btn.scaleY = 0.65;
 		container_by_bom.add(bom_btn);
@@ -200,53 +219,50 @@ class Level extends Phaser.Scene {
 		container_winner.add(winning_score_txt);
 
 		// winning_level_txt
-		const winning_level_txt = this.add.text(701, 247, "", {});
+		const winning_level_txt = this.add.text(701, 242, "", {});
 		winning_level_txt.setOrigin(0.5, 0.5);
 		winning_level_txt.text = "Level: 01";
 		winning_level_txt.setStyle({ "fontFamily": "Allerta", "fontSize": "30px" });
 		container_winner.add(winning_level_txt);
 
-		// glowing_star_3
-		const glowing_star_3 = this.add.image(804, 351, "Glowing-star");
-		glowing_star_3.scaleX = 0.5;
-		glowing_star_3.scaleY = 0.5;
-		container_winner.add(glowing_star_3);
-
-		// glowing_star_2
-		const glowing_star_2 = this.add.image(699, 333, "Glowing-star");
-		glowing_star_2.scaleX = 0.72;
-		glowing_star_2.scaleY = 0.72;
-		container_winner.add(glowing_star_2);
+		// container_stars
+		const container_stars = this.add.container(594, 333);
+		container_winner.add(container_stars);
 
 		// glowing_star_1
-		const glowing_star_1 = this.add.image(594, 351, "Glowing-star");
+		const glowing_star_1 = this.add.image(0, 18, "Glowing-star");
 		glowing_star_1.scaleX = 0.5;
 		glowing_star_1.scaleY = 0.5;
-		container_winner.add(glowing_star_1);
+		glowing_star_1.visible = false;
+		container_stars.add(glowing_star_1);
 
-		// s_green
-		const s_green = this.add.image(1176, 384, "s-green");
-		s_green.scaleX = 0.6;
-		s_green.scaleY = 0.6;
+		// glowing_star_2
+		const glowing_star_2 = this.add.image(105, 0, "Glowing-star");
+		glowing_star_2.scaleX = 0.72;
+		glowing_star_2.scaleY = 0.72;
+		glowing_star_2.visible = false;
+		container_stars.add(glowing_star_2);
 
-		// innerBar_1
-		const innerBar_1 = this.add.image(1188, 450, "innerBar");
-		innerBar_1.scaleY = 0.2;
-
-		// innerBar_2
-		const innerBar_2 = this.add.image(1181, 250, "innerBar");
-		innerBar_2.scaleY = 0.2;
+		// glowing_star_3
+		const glowing_star_3 = this.add.image(210, 18, "Glowing-star");
+		glowing_star_3.scaleX = 0.5;
+		glowing_star_3.scaleY = 0.5;
+		glowing_star_3.visible = false;
+		container_stars.add(glowing_star_3);
 
 		this.back_block_Cont = back_block_Cont;
+		this.timer_hammer = timer_hammer;
 		this.btn_pls_bom = btn_pls_bom;
+		this.timer_bom = timer_bom;
 		this.btn_pls_hammer = btn_pls_hammer;
 		this.side_cont = side_cont;
 		this.container_side_block = container_side_block;
 		this.innerBar = innerBar;
-		this.stars = stars;
+		this.stars_img = stars_img;
 		this.text_star = text_star;
 		this.text_leval = text_leval;
 		this.container_star = container_star;
+		this.glow = glow;
 		this.bnt_lock_bom = bnt_lock_bom;
 		this.txt_Total_star = txt_Total_star;
 		this.btn_close = btn_close;
@@ -261,6 +277,7 @@ class Level extends Phaser.Scene {
 		this.home_btn = home_btn;
 		this.winning_score_txt = winning_score_txt;
 		this.winning_level_txt = winning_level_txt;
+		this.container_stars = container_stars;
 		this.container_winner = container_winner;
 
 		this.events.emit("scene-awake");
@@ -269,7 +286,11 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Container} */
 	back_block_Cont;
 	/** @type {Phaser.GameObjects.Image} */
+	timer_hammer;
+	/** @type {Phaser.GameObjects.Image} */
 	btn_pls_bom;
+	/** @type {Phaser.GameObjects.Image} */
+	timer_bom;
 	/** @type {Phaser.GameObjects.Image} */
 	btn_pls_hammer;
 	/** @type {Phaser.GameObjects.Container} */
@@ -279,13 +300,15 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Image} */
 	innerBar;
 	/** @type {Phaser.GameObjects.Image} */
-	stars;
+	stars_img;
 	/** @type {Phaser.GameObjects.Text} */
 	text_star;
 	/** @type {Phaser.GameObjects.Text} */
 	text_leval;
 	/** @type {Phaser.GameObjects.Container} */
 	container_star;
+	/** @type {Phaser.GameObjects.Image} */
+	glow;
 	/** @type {Phaser.GameObjects.Image} */
 	bnt_lock_bom;
 	/** @type {Phaser.GameObjects.Text} */
@@ -315,6 +338,8 @@ class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Text} */
 	winning_level_txt;
 	/** @type {Phaser.GameObjects.Container} */
+	container_stars;
+	/** @type {Phaser.GameObjects.Container} */
 	container_winner;
 
 	/* START-USER-CODE */
@@ -325,8 +350,8 @@ class Level extends Phaser.Scene {
 
 		this.editorCreate();
 		this.oLevalData =
-			[{ nMaxScore: 20 },
-			{ nMaxScore: 21 },
+			[{ nMaxScore: 1 },
+			{ nMaxScore: 1 },
 			{ nMaxScore: 22 },
 			{ nMaxScore: 40 },
 			{ nMaxScore: 50 },
@@ -335,19 +360,20 @@ class Level extends Phaser.Scene {
 			{ nMaxScore: 80 },
 			{ nMaxScore: 95 },
 			{ nMaxScore: 100 },
-			]
-		this.nCurruntLeval = Math.min(this.oLevalData.length-1, JSON.parse(localStorage.getItem("nCurruntLeval") == null ? 0 : localStorage.getItem("nCurruntLeval")));
+			];
+		this.nCurruntLeval = Math.min(this.oLevalData.length - 1, JSON.parse(localStorage.getItem("nCurruntLeval") == null ? 0 : localStorage.getItem("nCurruntLeval")));
 		this.text_leval.setText(`Level : ${this.nCurruntLeval + 1}`);
-		this.nCurruntLevalData = this.oLevalData[Math.min(this.oLevalData.length-1, this.nCurruntLeval)];
+		this.nCurruntLevalData = this.oLevalData[Math.min(this.oLevalData.length - 1, this.nCurruntLeval)];
 
- 		this.AllImageObj = [];
+		this.AllImageObj = [];
 		this.AllImageArray = [];
 		this.removeArray = [];
 		this.allPrefab = [];
 		this.nPrefab = 0;
-		this.nTotalStar = 18;
+		this.nTotalStar = 0;
 		this.bIBomDrag = false
-		this.bIDiamondDrag = false
+		this.bIDiamondDrag = false;
+		this.isPaused = false
 
 		for (let index_x = 0; index_x < 8; index_x++) {
 			this.AllImageObj[index_x] = [];
@@ -389,7 +415,10 @@ class Level extends Phaser.Scene {
 					this.bIDiamondDrag = true;
 				}
 				this.nTotalStar -= 10;
-
+				this.text_star.setText(this.nTotalStar);
+				this.isPaused = false
+			} else {
+				this.oUiManager.setNotWinnerPartical();
 			}
 		});
 
@@ -397,17 +426,26 @@ class Level extends Phaser.Scene {
 		this.btn_pls_bom.setInteractive().on('pointerdown', () => {
 			this.container_by_bom.setVisible(true);
 			this.bom_btn.setTexture("bomb");
-			this.txt_Total_star.setText(this.nTotalStar)
+			this.txt_Total_star.setText(this.nTotalStar);
+			this.oUiManager.setRotationAnimation(this.glow);
+			this.isPaused = true
+
 		});
 
 		// Set interactive behavior for this.btn_pls_hammer
 		this.btn_pls_hammer.setInteractive().on('pointerdown', () => {
 			this.container_by_bom.setVisible(true);
 			this.bom_btn.setTexture("hammer");
-			this.txt_Total_star.setText(this.nTotalStar)
+			this.txt_Total_star.setText(this.nTotalStar);
+			this.oUiManager.setRotationAnimation(this.glow)
+ 			document.body.classList.add('active');
+			this.isPaused = true
+
+
 		});
 		this.btn_close.setInteractive().on('pointerdown', () => {
 			this.container_by_bom.setVisible(false);
+			this.isPaused = false
 		});
 
 		this.replay_btn.setInteractive().on('pointerdown', () => {
@@ -464,7 +502,6 @@ class Level extends Phaser.Scene {
 
 		let isPossible = true;
 		const aNotPosibleBlock = [];
-
 		for (let index_prefab = 0; index_prefab < this.allPrefab.length; index_prefab++) {
 
 			const newCol = this.allPrefab[index_prefab].name.y;
@@ -483,26 +520,31 @@ class Level extends Phaser.Scene {
 				}
 			}
 			if (isPossible) {
-				console.log("Not_Posible", this.allPrefab[index_prefab].name);
 				this.allPrefab[index_prefab].alpha = 0.7;
 				aNotPosibleBlock.push(this.allPrefab[index_prefab]);
 			} else {
 				this.allPrefab[index_prefab].alpha = 1;
+				this.timer_bom.setVisible(false);
+				this.timer_hammer.setVisible(false);
+				clearInterval(this.tTimerProgress);
 			}
-
 		}
 
 		if (aNotPosibleBlock.length > 0) {
 			if (aNotPosibleBlock.length === this.allPrefab.length) {
-				console.log("**************************************");
-				setTimeout(() => {
-					this.oUiManager.setNotWinnerAnimation();
-				}, 1000);
-
-
+				if (this.nTotalStar > 9) {
+					clearInterval(this.tTimerProgress);
+					this.setTimerProgressBar();
+				} else {
+					setTimeout(() => {
+						clearInterval(this.tTimerProgress);
+						this.timer_bom.setVisible(false);
+						this.timer_hammer.setVisible(false);
+						this.oUiManager.setNotWinnerAnimation();
+					}, 1500);
+				}
 
 			}
-			console.log(aNotPosibleBlock);
 		}
 
 
@@ -596,6 +638,56 @@ class Level extends Phaser.Scene {
 
 
 	}
+	setTimerProgressBar() {
+		const shapeOne = this.make.graphics();
+		const shapeTwo = this.make.graphics();
+		this.timer_bom.setMask(shapeOne.createGeometryMask());
+		this.timer_hammer.setMask(shapeTwo.createGeometryMask());
+		this.timer_bom.setVisible(true);
+		this.timer_hammer.setVisible(true);
+
+		const totalTime = 20;
+		let currentAngle = 270;
+
+		const updateProgressBar = () => {
+			if (this.isPaused) {
+				// If paused, don't update the progress
+				return;
+			}
+			shapeOne.clear();
+			shapeOne.beginPath();
+			shapeOne.moveTo(this.timer_bom.x, this.timer_bom.y);
+			shapeOne.arc(this.timer_bom.x, this.timer_bom.y, 200, Phaser.Math.DegToRad(currentAngle), Phaser.Math.DegToRad(-90), true);
+			shapeOne.closePath();
+			shapeOne.fill();
+
+			shapeTwo.clear();
+			shapeTwo.beginPath();
+			shapeTwo.moveTo(this.timer_hammer.x, this.timer_hammer.y);
+			shapeTwo.arc(this.timer_hammer.x, this.timer_hammer.y, 200, Phaser.Math.DegToRad(currentAngle), Phaser.Math.DegToRad(-90), true);
+			shapeTwo.closePath();
+			shapeTwo.fill();
+
+			if (currentAngle <= -90) {
+				clearInterval(this.tTimerProgress);
+				this.timer_bom.setVisible(false);
+				this.timer_hammer.setVisible(false);
+				this.oUiManager.setNotWinnerAnimation();
+			} else {
+				currentAngle -= (360 / totalTime);
+			}
+		};
+
+		this.tTimerProgress = setInterval(updateProgressBar, 1000);
+
+
+	}
+
+
+
+	// Usage
+
+
 
 
 

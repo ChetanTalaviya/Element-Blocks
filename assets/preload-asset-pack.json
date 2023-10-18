@@ -7,9 +7,34 @@
                 "key": "guapen"
             },
             {
+                "url": "assets/image/Preload-screen/innerBar.png",
+                "type": "image",
+                "key": "innerBar"
+            },
+            {
+                "url": "assets/image/Preload-screen/Logo.png",
+                "type": "image",
+                "key": "Logo"
+            },
+            {
+                "url": "assets/image/Preload-screen/outerBar.png",
+                "type": "image",
+                "key": "outerBar"
+            },
+            {
                 "url": "assets/image/winning-Screen/Play-btn.png",
                 "type": "image",
                 "key": "Play-btn"
+            },
+            {
+                "url": "assets/image/background/Setting-button.png",
+                "type": "image",
+                "key": "Setting-button"
+            },
+            {
+                "url": "assets/image/background/Sound-button.png",
+                "type": "image",
+                "key": "Sound-button"
             }
         ]
     },

@@ -32,21 +32,24 @@ class Hammer extends Phaser.GameObjects.Image {
 		const self = this;
 		this.lastRowAndCol = null
 
-		this.on("pointerdown", () => { this.oScene.bIDiamondDrag ? this.setScale(0.5) : null }, self);
+		this.on("pointerdown", () => { this.oScene.bIDiamondDrag ? this.setScale(0.35) : null }, self);
 
 		this.oScene.input.on("drag", function (pointer, gameObj, dragX, dragY) {
 			if (gameObj === self && this.oScene.bIDiamondDrag) {
 				gameObj.x = dragX;
 				gameObj.y = dragY;
-				gameObj.setScale(0.5);
+				gameObj.setScale(0.35);
 				self.matchImage(gameObj);
+				this.oScene.isPaused = true
 			}
 		}, this);
 
 		this.oScene.input.on("dragend", function (pointer, gameObj) {
 			if (gameObj === self && this.oScene.bIDiamondDrag) {
 				if (this.lastRowAndCol !== null) {
-					this.setFinalbombblast()
+					this.setFinalbombblast();
+					this.oScene.isPaused = false
+
 				} else {
 					this.setAlphavalues(1);
 				}
@@ -112,7 +115,8 @@ class Hammer extends Phaser.GameObjects.Image {
 		this.setAlphavalues(1);
 		this.lastRowAndCol = null;
 		this.oScene.bIDiamondDrag = false;
-		this.oScene.btn_pls_hammer.setTexture("btn_pls")
+		this.oScene.btn_pls_hammer.setTexture("btn_pls");
+		this.oScene.setISCurruntPosible()
 
 	}
 

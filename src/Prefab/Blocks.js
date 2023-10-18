@@ -32,13 +32,12 @@ class Blocks extends Phaser.GameObjects.Container {
 	addNewBlocks() {
 
 		this.isDragged = true;
-		this.setSize(
-			80 * Math.abs(this.name.x) + 80,
-			(80 * Math.abs(this.name.y) + 80)
-		);
-		console.log(this);
-		console.log(80 * Math.abs(this.name.x) + 80, (80 * Math.abs(this.name.y) + 80));
-
+		// this.setSize(
+		// 	80 * Math.abs(this.name.x) + 80,
+		// 	(80 * Math.abs(this.name.y) + 80)
+		// );
+		this.setSize(180,180)
+  
 		this.setInteractive();
 		this.oScene.input.setDraggable(this);
 		var self = this;
@@ -472,7 +471,7 @@ class Blocks extends Phaser.GameObjects.Container {
 
 	response() {
 		const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
-		// const i = 4;
+		// const i = 11;
 		this.allImage = [];
 		const dis_X = 45;
 		const dis_Y = 45;

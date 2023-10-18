@@ -135,9 +135,9 @@
                 "key": "Home-btn"
             },
             {
-                "url": "assets/image/background/innerBar.png",
+                "url": "assets/image/background/innerBar-level.png",
                 "type": "image",
-                "key": "innerBar"
+                "key": "innerBar-level"
             },
             {
                 "url": "assets/image/winning-Screen/level-complete-popup.png",
@@ -150,9 +150,9 @@
                 "key": "Level-failed-popup"
             },
             {
-                "url": "assets/image/background/outerBar.png",
+                "url": "assets/image/background/outerBar-level.png",
                 "type": "image",
-                "key": "outerBar"
+                "key": "outerBar-level"
             },
             {
                 "url": "assets/image/winning-Screen/replay-btn.png",
@@ -203,6 +203,16 @@
                 "url": "assets/image/background/star.png",
                 "type": "image",
                 "key": "star"
+            },
+            {
+                "url": "assets/image/background/sugar crusdfth-57.png",
+                "type": "image",
+                "key": "sugar crusdfth-57"
+            },
+            {
+                "url": "assets/image/background/timer.png",
+                "type": "image",
+                "key": "timer"
             },
             {
                 "url": "src/script/UiManager.js",
