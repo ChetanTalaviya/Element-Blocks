@@ -12,29 +12,10 @@ class UiManager {
     }
 
     setNotWinnerAnimation() {
-        // setTimeout(() => {
-        //     for (let index_col = 0; index_col < 8; index_col++) {
-        //         for (let index_row = 0; index_row < 8; index_row++) {
-        //             this.oSceneObj.tweens.add({
-        //                 targets: this.oSceneObj.AllImageObj[index_col][index_row],
-        //                 props: {
-        //                     x: { value: Math.floor(Math.random() * 1500), duration: 5000, },
-        //                     y: { value: 1000, duration: 2000, },
-        //                 },
-        //                 ease: 'Sine.easeInOut',
-        //             });
-        //         }
-        //     }
-
-        // }, 1500);
 
         this.oSceneObj.container_level_failed.setVisible(true)
         this.oSceneObj.failed_score_txt.text = `SCORE : ${this.oSceneObj.nTotalStar}`
         this.oSceneObj.failed_level_txt.text = `LEVEL : ${this.oSceneObj.nCurruntLeval + 1}`
-
-
-
-
     }
     setScoreProgressBar(col, row) {
         this.oSceneObj.nTotalStar += 1;
@@ -117,7 +98,7 @@ class UiManager {
 
 
     starAnimation() {
-         let nDelay = 0;
+        let nDelay = 0;
         for (let i = 1; i <= 3; i++) {
             const star = this.oSceneObj.container_stars.list[i - 1]
             this.oSceneObj.container_stars.list[0].setVisible(true);

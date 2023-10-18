@@ -112,50 +112,50 @@ class Preload extends Phaser.Scene {
 			this.play_btn.x = 150;
 		}
 
-		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
-		// this.load.once(Phaser.Loader.Events.COMPLETE, () => isStart = true);
+		// this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
+		this.load.once(Phaser.Loader.Events.COMPLETE, () => isStart = true);
 
 
-		// this.play_btn.setInteractive().on('pointerdown', () => {
-		// 	if (window.innerWidth <= 820) {
-		// 		this.openFullscreen();
-		// 	}
-		// 	this.scene.start("Level");
+		this.play_btn.setInteractive().on('pointerdown', () => {
+			if (window.innerWidth <= 820) {
+				this.openFullscreen();
+			}
+			this.scene.start("Level");
 
-		// });
+		});
 
 
-		// const maskGraphics = this.make.graphics().fillStyle(0xffffff).fillRect(this.innerBar.x, this.innerBar.y - this.innerBar.displayHeight / 2, this.innerBar.displayWidth, this.innerBar.displayHeight);
-		// this.innerBar.setMask(maskGraphics.createGeometryMask());
+		const maskGraphics = this.make.graphics().fillStyle(0xffffff).fillRect(this.innerBar.x, this.innerBar.y - this.innerBar.displayHeight / 2, this.innerBar.displayWidth, this.innerBar.displayHeight);
+		this.innerBar.setMask(maskGraphics.createGeometryMask());
 
-		// const loadingDuration = 2200;
-		// const intervalDuration = 40;
-		// const numIntervals = loadingDuration / intervalDuration;
-		// const progressIncrement = 1 / numIntervals;
+		const loadingDuration = 2200;
+		const intervalDuration = 40;
+		const numIntervals = loadingDuration / intervalDuration;
+		const progressIncrement = 1 / numIntervals;
 
-		// const updateProgressBar = () => {
-		// 	this.innerBar.visible = true;
-		// 	const currentProgress = currentInterval * progressIncrement;
-		// 	maskGraphics.clear().fillStyle(0xffffff).fillRect(this.innerBar.x, this.innerBar.y - this.innerBar.displayHeight / 2, this.innerBar.displayWidth * currentProgress, this.innerBar.displayHeight);
-		// 	if (currentProgress >= 1 && isStart) {
-		// 		clearInterval(progressInterval);
-		// 		this.play_btn.visible = true;
-		// 		this.container_progressBar.visible = false;
-		// 		if (window.innerWidth < 1080) {
-		// 			this.tweenAnimations(this.logo, 0.5, 0.55);
-		// 		} else {
-		// 			this.tweenAnimations(this.logo, 0.7, 0.75);
-		// 		}
+		const updateProgressBar = () => {
+			this.innerBar.visible = true;
+			const currentProgress = currentInterval * progressIncrement;
+			maskGraphics.clear().fillStyle(0xffffff).fillRect(this.innerBar.x, this.innerBar.y - this.innerBar.displayHeight / 2, this.innerBar.displayWidth * currentProgress, this.innerBar.displayHeight);
+			if (currentProgress >= 1 && isStart) {
+				clearInterval(progressInterval);
+				this.play_btn.visible = true;
+				this.container_progressBar.visible = false;
+				if (window.innerWidth < 1080) {
+					this.tweenAnimations(this.logo, 0.5, 0.55);
+				} else {
+					this.tweenAnimations(this.logo, 0.7, 0.75);
+				}
 
-		// 		this.tweenAnimation(this.play_btn, 0.9, 1);
-		// 	} else {
-		// 		this.txt_progress.setText((currentProgress * 100 > 100 ? 100 : currentProgress * 100).toFixed(0) + '%');
-		// 	}
-		// 	currentInterval++;
-		// };
-		// let currentInterval = 0;
+				this.tweenAnimation(this.play_btn, 0.9, 1);
+			} else {
+				this.txt_progress.setText((currentProgress * 100 > 100 ? 100 : currentProgress * 100).toFixed(0) + '%');
+			}
+			currentInterval++;
+		};
+		let currentInterval = 0;
 
-		// const progressInterval = setInterval(updateProgressBar, intervalDuration);
+		const progressInterval = setInterval(updateProgressBar, intervalDuration);
 
 
 

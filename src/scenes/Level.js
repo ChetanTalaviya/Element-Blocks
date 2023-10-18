@@ -350,8 +350,8 @@ class Level extends Phaser.Scene {
 
 		this.editorCreate();
 		this.oLevalData =
-			[{ nMaxScore: 1 },
-			{ nMaxScore: 1 },
+			[{ nMaxScore: 10 },
+			{ nMaxScore: 15 },
 			{ nMaxScore: 22 },
 			{ nMaxScore: 40 },
 			{ nMaxScore: 50 },
@@ -438,7 +438,7 @@ class Level extends Phaser.Scene {
 			this.bom_btn.setTexture("hammer");
 			this.txt_Total_star.setText(this.nTotalStar);
 			this.oUiManager.setRotationAnimation(this.glow)
- 			document.body.classList.add('active');
+			document.body.classList.add('active');
 			this.isPaused = true
 
 

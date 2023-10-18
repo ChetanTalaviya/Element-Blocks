@@ -781,8 +781,7 @@ class Blocks extends Phaser.GameObjects.Container {
 			// console.log(this.oScene.AllImageObj);
 			const nArray = this.matchInBoard().result;
 			for (let result_Array = 0; result_Array < nArray.length; result_Array++) {
-				this.setWinner();
-				let matchValue = nArray[result_Array];
+ 				let matchValue = nArray[result_Array];
 				for (let index = 0; index <= 7; index++) {
 					if (matchValue.Direction === "col") {
 						this.oScene.removeArray[index][matchValue.DrconNmbr] = 0;
@@ -851,18 +850,7 @@ class Blocks extends Phaser.GameObjects.Container {
 
 	}
 
-	setWinner() {
-		if (this.aTempMtachImage.length > 0) {
-			this.aTempMtachImage.forEach((box) => {
-				box.destroy();
-			});
-		}
-		confetti({
-			particleCount: 50,
-			spread: 70,
-			origin: { y: 0.6 },
-		});
-	}
+ 
 }
 
 /* END-USER-CODE */
