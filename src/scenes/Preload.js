@@ -112,7 +112,7 @@ class Preload extends Phaser.Scene {
 			this.play_btn.x = 150;
 		}
 
-		// this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
+	    // this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
 		this.load.once(Phaser.Loader.Events.COMPLETE, () => isStart = true);
 
 
@@ -147,9 +147,9 @@ class Preload extends Phaser.Scene {
 					this.tweenAnimations(this.logo, 0.7, 0.75);
 				}
 
-				this.tweenAnimation(this.play_btn, 0.9, 1);
+				this.tweenAnimations(this.play_btn, 1.15, 1.2);
 			} else {
-				this.txt_progress.setText((currentProgress * 100 > 100 ? 100 : currentProgress * 100).toFixed(0) + '%');
+				this.txt_progress.setText((currentProgress * 100 >= 100 ? 100 : currentProgress * 100).toFixed(0) + '%');
 			}
 			currentInterval++;
 		};
@@ -157,18 +157,11 @@ class Preload extends Phaser.Scene {
 
 		const progressInterval = setInterval(updateProgressBar, intervalDuration);
 
-
+		this.play_btn.on('pointerover', () => this.input.setDefaultCursor('pointer'));
+		this.play_btn.on('pointerout', () => this.input.setDefaultCursor('default'));
 
 	}
-	tweenAnimation(img, min, max) {
-		this.tweens.add({
-			targets: img,
-			scaleY: { from: min, to: max },
-			duration: 1000,
-			yoyo: true,
-			repeat: -1,
-		});
-	}
+ 
 	tweenAnimations(img, min, max) {
 		this.tweens.add({
 			targets: img,

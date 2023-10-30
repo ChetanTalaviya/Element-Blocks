@@ -18,6 +18,9 @@ class Blocks extends Phaser.GameObjects.Container {
 		this.oScene.add.existing(this);
 		this.response();
 		this.addNewBlocks();
+		this.on('pointerover', () => this.setScale(1.1));
+		this.on('pointerout', () => this.setScale(1));
+
 
 
 		/* END-USER-CTR-CODE */
@@ -36,8 +39,8 @@ class Blocks extends Phaser.GameObjects.Container {
 		// 	80 * Math.abs(this.name.x) + 80,
 		// 	(80 * Math.abs(this.name.y) + 80)
 		// );
-		this.setSize(180,180)
-  
+		this.setSize(180, 180)
+
 		this.setInteractive();
 		this.oScene.input.setDraggable(this);
 		var self = this;
@@ -52,15 +55,14 @@ class Blocks extends Phaser.GameObjects.Container {
 		this.on(
 			"pointerdown",
 			() => {
-				this.setScale(1.4);
+				!this.oScene.isWinner ? this.setScale(1.4) : null
 			},
 			self
-		);
-
-		this.oScene.input.on(
+		); 
+ 		this.oScene.input.on(
 			"drag",
 			function (pointer, gameObj, dragX, dragY) {
-				if (gameObj === self && self.isDragged) {
+				if (gameObj === self && self.isDragged && !this.oScene.isWinner) {
 					gameObj.x = dragX;
 					gameObj.y = dragY;
 					gameObj.setScale(1.4);
@@ -103,6 +105,7 @@ class Blocks extends Phaser.GameObjects.Container {
 			function (pointer, gameObj) {
 				if (gameObj === self) {
 					self.matchImage(gameObj);
+					// this.depth = 0;
 				}
 			},
 			this
@@ -344,25 +347,19 @@ class Blocks extends Phaser.GameObjects.Container {
 						this.oScene.AllImageObj[i][k].sprite.x,
 						this.oScene.AllImageObj[i][k].sprite.y,
 						// this.color
-						this.oScene.AllImageObj[i][k].isStar ? this.oScene.AllImageObj[i][k].sprite.texture.key : this.color
+						this.oScene.AllImageObj[i][k].isStar ? this.selectSimilarStarImages(this.color) : this.color
+						// this.oScene.AllImageObj[i][k].isStar ? this.oScene.AllImageObj[i][k].sprite.texture.key : this.color
 					);
-					if (this.oScene.AllImageObj[i][k].isStar) {
-						// console.log(k,i,this.oScene.AllImageObj[i][k].sprite.texture.key);
-
-					}
 
 				} else {
 					var img = this.oScene.add.image(
 						this.oScene.AllImageObj[k][i].sprite.x,
 						this.oScene.AllImageObj[k][i].sprite.y,
 						// this.color
-						this.oScene.AllImageObj[i][k].sprite.isStar ? this.oScene.AllImageObj[i][k].sprite.texture.key : this.color
-
+						this.oScene.AllImageObj[k][i].isStar ? this.selectSimilarStarImages(this.color) : this.color
+						// this.oScene.AllImageObj[k][i].isStar ? this.oScene.AllImageObj[k][i].sprite.texture.key : this.color
 					);
-					if (this.oScene.AllImageObj[k][i].isStar) {
-						// console.log(i,k,this.oScene.AllImageObj[k][i].sprite.texture.key);
 
-					}
 				}
 				this.oScene.back_block_Cont.add(img);
 				this.aTempMtachImage.push(img);
@@ -468,10 +465,39 @@ class Blocks extends Phaser.GameObjects.Container {
 			}
 		}
 	}
+	selectSimilarStarImages(img) {
+ 		let iSimilarImg = null;
+		switch (img) {
+			case "block-Blue":
+				iSimilarImg = "s-blue";
+				break;
+			case "block-green":
+				iSimilarImg = "s-green";
+				break;
+			case "block-pink":
+				iSimilarImg = "s-pink";
+				break;
+			case "block-purple":
+				iSimilarImg = "s-purple";
+				break;
+			case "block-Red":
+				iSimilarImg = "s-red";
+				break;
+			case "block-yellow":
+				iSimilarImg = "s-yellow";
+				break;
+			default:
+				// Handle cases not covered above, if needed
+				break;
+		}
+
+ 		return iSimilarImg;
+	}
+
 
 	response() {
 		const i = Math.floor(Math.random() * 13); // Generate a random number between 0 and 11
-		// const i = 11;
+		// const i = 12;
 		this.allImage = [];
 		const dis_X = 45;
 		const dis_Y = 45;
@@ -499,7 +525,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				this.name = { x: 0, y: 0 };
 				break;
 
-			case 1:
+			case 11:
 				for (let index = 0; index <= 2; index++) {
 					addImage(-index * dis_X, 0, randomImage);
 				}
@@ -512,6 +538,8 @@ class Blocks extends Phaser.GameObjects.Container {
 					addImage(-index * dis_X, 0, randomImage);
 				}
 				this.name = { x: -1, y: 0 };
+				this.nPosition = { x: 20, y: 0 }
+
 				break;
 
 			case 3:
@@ -544,7 +572,7 @@ class Blocks extends Phaser.GameObjects.Container {
 					addImage(0, index * dis_Y, randomImage);
 				}
 				this.name = { x: -2, y: 2 };
-				this.nPosition = { x: 45, y: -20 }
+				this.nPosition = { x: 38, y: -20 }
 
 				break;
 			case 7:
@@ -564,7 +592,7 @@ class Blocks extends Phaser.GameObjects.Container {
 				addImage(-dis_X, 0, randomImage);
 				addImage(-dis_X * 2, 0, randomImage);
 				this.name = { x: -2, y: -2 };
-				this.nPosition = { x: 45, y: 40 }
+				this.nPosition = { x: 38, y: 40 }
 
 				break;
 			case 9:
@@ -573,6 +601,7 @@ class Blocks extends Phaser.GameObjects.Container {
 					addImage(0, -index * dis_Y, randomImage);
 				}
 				this.name = { x: -1, y: -1 };
+				this.nPosition = { x: 20, y: 20 }
 
 				break;
 			case 10:
@@ -581,8 +610,9 @@ class Blocks extends Phaser.GameObjects.Container {
 					addImage(0, index * dis_Y, randomImage);
 				}
 				this.name = { x: 1, y: 1 };
+				this.nPosition = { x: -20, y: -20 }
 				break;
-			case 11:
+			case 1:
 				addImage(0, 0, randomImage);
 				addImage(dis_X * 2, 0, randomImagewithStar);
 				addImage(0, 45, randomImage);
@@ -775,13 +805,11 @@ class Blocks extends Phaser.GameObjects.Container {
 			].sprite.setTexture(this.allImage[index].color);
 			this.oScene.AllImageObj[aArray[index].row][aArray[index].col].isStar =
 				["s-blue", "s-green", "s-pink", "s-purple", "s-red", "s-yellow"].includes(this.allImage[index].color) ? true : false;
-			// this.allImage[index].color === "s-yellow" ? true : false;
 		}
 		if (this.matchInBoard().ismatch) {
-			// console.log(this.oScene.AllImageObj);
 			const nArray = this.matchInBoard().result;
 			for (let result_Array = 0; result_Array < nArray.length; result_Array++) {
- 				let matchValue = nArray[result_Array];
+				let matchValue = nArray[result_Array];
 				for (let index = 0; index <= 7; index++) {
 					if (matchValue.Direction === "col") {
 						this.oScene.removeArray[index][matchValue.DrconNmbr] = 0;
@@ -850,7 +878,7 @@ class Blocks extends Phaser.GameObjects.Container {
 
 	}
 
- 
+
 }
 
 /* END-USER-CODE */

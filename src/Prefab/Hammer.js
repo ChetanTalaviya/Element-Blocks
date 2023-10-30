@@ -15,7 +15,7 @@ class Hammer extends Phaser.GameObjects.Image {
 		// Write your code here.
 		this.oScene = scene;
 		this.oScene.add.existing(this);
-		this.setDrageble();
+  		this.setDrageble();
 		/* END-USER-CTR-CODE */
 	}
 
