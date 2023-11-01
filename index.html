@@ -47,7 +47,7 @@
 			position: absolute;
 			top: 0;
 			left: calc(50% + 249px);
-			background:rgba(0, 0, 0, 0.5);
+			background: rgba(0, 0, 0, 0.5);
 			content: '';
 			width: 50vw;
 			height: 100vh
@@ -57,17 +57,117 @@
 			position: absolute;
 			top: 0;
 			right: calc(50% + 249px);
-			background:rgba(0, 0, 0, 0.5);
+			background: rgba(0, 0, 0, 0.5);
 			content: '';
 			width: 50vw;
 			height: 100vh
+		}
+
+		#rotateDevice {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #232323;
+			color: #fff;
+			text-align: center;
+			line-height: 2;
+			font-size: 24px;
+			z-index: 9999;
+		}
+
+		.rotate-details {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			line-height: 35px;
+			gap: 25px;
+			font-size: 20px;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.rotate-details img {
+			width: 75px;
+			height: 75px;
+			animation: rotateImage infinite 2s;
+			transform: rotate(-45deg);
+			margin-bottom: 15px;
+		}
+
+		@keyframes rotateImage {
+			0% {
+				transform: rotate(-45deg);
+			}
+
+			50% {
+				transform: rotate(45deg);
+			}
+
+			100% {
+				transform: rotate(-45deg);
+			}
+		}
+
+		canvas {
+			max-height: 100%;
+		}
+
+		@media screen and (orientation: portrait) {
+			#game-division {
+				display: none;
+			}
+
+			#rotateDevice {
+				display: block;
+			}
+		}
+
+		#game-division {
+			background: url('assets/image/background/background.png')no-repeat center center/cover;
+			width: 100%;
+			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			overflow: hidden;
 		}
 	</style>
 
 </head>
 
 <body>
-	<!-- <div class="overlay"></div> -->
+
+	<div id="rotateDevice">
+		<div class="rotate-details">
+			<img src="./assets/image/Preload-screen/rotation.png" alt="">
+			<div>Please Rotate Your Device to Landscape Mode</div>
+		</div>
+	</div>
+
+	<div id="game-division"></div>
 </body>
+<script>
+			const userAgent = navigator.userAgent.toLowerCase();
+
+	window.addEventListener('orientationchange', function () {
+		if (userAgent.includes("mobile") || userAgent.includes("android") || userAgent.includes("tablet")) {
+			const orientation = window.orientation;
+			if (orientation === 0 || orientation === 180) {
+				// Portrait mode
+				document.getElementById("game-division").style.display = "none";
+				document.getElementById("rotateDevice").style.display = "block";
+			} else if (orientation === 90 || orientation === -90) {
+				// Landscape mode
+				document.getElementById("game-division").style.display = "block";
+				document.getElementById("rotateDevice").style.display = "none";
+			}
+		}
+
+	});
+</script>
 
 </html>

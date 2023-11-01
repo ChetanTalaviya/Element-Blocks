@@ -3,12 +3,13 @@ window.addEventListener('load', function () {
 
 	this.game = new Phaser.Game({
 		// width: window.innerWidth >= 820 ? 1280 : window.innerWidth,
-		// height: window.innerWidth >= 820 ? 720 : window.innerHeight,
+		// height: window.innerWi/dth >= 820 ? 720 : window.innerHeight,
 		width: 1280,
 		height: 720,
 		type: Phaser.AUTO,
 		backgroundColor: "#242424",
 		transparent: true,
+		parent:'game-division',
 
 		scale: {
 			mode: Phaser.Scale.FIT,

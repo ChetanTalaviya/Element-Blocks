@@ -59,6 +59,7 @@ class Preload extends Phaser.Scene {
 		const innerBar = this.add.image(442, 525, "innerBar");
 		innerBar.scaleY = 0.9;
 		innerBar.setOrigin(0, 0.5);
+		innerBar.visible = false;
 		container_progressBar.add(innerBar);
 
 		// loadingText
@@ -109,20 +110,30 @@ class Preload extends Phaser.Scene {
 		let isStart = false;
 
 		if (window.innerWidth <= 820) {
-			this.play_btn.x = 150;
+			// this.play_btn.x = 150;
+			// this.logo.setScale(1.2)
 		}
 
-	    // this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
+		//  this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
 		this.load.once(Phaser.Loader.Events.COMPLETE, () => isStart = true);
 
+		const userAgent = navigator.userAgent.toLowerCase();
 
-		this.play_btn.setInteractive().on('pointerdown', () => {
-			if (window.innerWidth <= 820) {
-				this.openFullscreen();
+		this.play_btn.setInteractive().on('pointerup', () => {
+			if (userAgent.includes("mobile") || userAgent.includes("android") || userAgent.includes("tablet")) {
+				const gameContainer = document.getElementById('game-division');
+				this.toggleFullScreen(gameContainer);
 			}
 			this.scene.start("Level");
 
 		});
+		 
+
+		// Get the user agent string
+
+
+		// Check if the user agent string contains specific keywords
+
 
 
 		const maskGraphics = this.make.graphics().fillStyle(0xffffff).fillRect(this.innerBar.x, this.innerBar.y - this.innerBar.displayHeight / 2, this.innerBar.displayWidth, this.innerBar.displayHeight);
@@ -157,11 +168,11 @@ class Preload extends Phaser.Scene {
 
 		const progressInterval = setInterval(updateProgressBar, intervalDuration);
 
-		this.play_btn.on('pointerover', () => this.input.setDefaultCursor('pointer'));
-		this.play_btn.on('pointerout', () => this.input.setDefaultCursor('default'));
+		// this.play_btn.on('pointerover', () => this.input.setDefaultCursor('pointer'));
+		// this.play_btn.on('pointerout', () => this.input.setDefaultCursor('default'));
 
 	}
- 
+
 	tweenAnimations(img, min, max) {
 		this.tweens.add({
 			targets: img,
@@ -171,16 +182,30 @@ class Preload extends Phaser.Scene {
 			repeat: -1,
 		});
 	}
-	openFullscreen() {
-		var element = this.game.canvas;
-		if (element.requestFullscreen) {
-			element.requestFullscreen();
-		} else if (element.mozRequestFullScreen) { // Firefox
-			element.mozRequestFullScreen();
-		} else if (element.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-			element.webkitRequestFullscreen();
-		} else if (element.msRequestFullscreen) { // IE/Edge
-			element.msRequestFullscreen();
+	toggleFullScreen(element) {
+		if (!document.fullscreenElement &&    // standard
+			!document.mozFullScreenElement && // Firefox
+			!document.webkitFullscreenElement &&  // Chrome, Safari, and Opera
+			!document.msFullscreenElement) {  // IE/Edge
+			if (element.requestFullscreen) {
+				element.requestFullscreen();
+			} else if (element.mozRequestFullScreen) {
+				element.mozRequestFullScreen();
+			} else if (element.webkitRequestFullScreen) {
+				element.webkitRequestFullscreen();
+			} else if (element.msRequestFullscreen) {
+				element.msRequestFullscreen();
+			}
+		} else {
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitExitFullscreen) {
+				document.webkitExitFullscreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
 		}
 	}
 

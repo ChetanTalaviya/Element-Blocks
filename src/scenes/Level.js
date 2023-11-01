@@ -518,16 +518,16 @@ class Level extends Phaser.Scene {
 			this.scene.restart();
 		});
 
-		if (window.innerWidth <= 820) {
-			// this.openFullscreen();
-			this.back_block_Cont.setScale(0.5);
-			this.back_block_Cont.setPosition(-165, 150);
-			this.side_cont.setScale(0.5);
-			this.container_star.setScale(0.5);
-			this.container_side_block.setScale(0.5);
-			// this.container_side_block.x -=500;
-			// this.container_side_block.setAngle(-90)
-		}
+		// if (window.innerWidth <= 820) {
+		// 	// this.openFullscreen();
+		// 	this.back_block_Cont.setScale(0.5);
+		// 	this.back_block_Cont.setPosition(-165, 150);
+		// 	this.side_cont.setScale(0.5);
+		// 	this.container_star.setScale(0.5);
+		// 	this.container_side_block.setScale(0.5);
+		// 	// this.container_side_block.x -=500;
+		// 	// this.container_side_block.setAngle(-90)
+		// }
 
 	}
 	addNewPrefab(imgName) {
